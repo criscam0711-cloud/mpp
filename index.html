@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curso de Manipulación de Alimentos totalmente gratis. Certifícate de forma 100% legal y válido en toda Colombia. Centro de Capacitación Mercedes Pinilla — Yopal, Casanare.">
+  <meta name="keywords" content="manipulación de alimentos, curso virtual gratis, certificado Colombia, INVIMA, BPM, higiene alimentaria, Resolución 2674">
+  <meta property="og:title" content="Curso de Manipulación de Alimentos Gratis — Mercedes Pinilla">
+  <meta property="og:description" content="Toma el curso en línea, aprueba la evaluación y recibe tu certificado. Válido en todo Colombia.">
+  <title>Curso Manipulación de Alimentos | Centro de Capacitación Mercedes Pinilla</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&family=Oswald:wght@600&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+  <!-- AOS — Animate On Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+  <style>
+    /* ================================================
+       VARIABLES & RESET
+    ================================================ */
+    :root {
+      --verde-oscuro:       #1A3863;
+      --azul-claro:  #2B4D86;
+      --naranja:     #FF6F00;
+      --blanco:      #FFFFFF;
+      --gris-claro:  #F5F5F5;
+      --gris-texto:  #333333;
+      --azul-ray:    #1565C0;
+      --rojo:        #C62828;
+      --dorado:      #FFC107;
+      --sombra:      0 4px 20px rgba(0,0,0,.10);
+      --sombra-lg:   0 8px 35px rgba(0,0,0,.15);
+      --radio:       12px;
+      --tx:          all .3s ease;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body { font-family:'Open Sans',sans-serif; color:var(--gris-texto); background:var(--blanco); line-height:1.6; overflow-x:hidden; }
+    h1,h2,h3,h4 { font-family:'Montserrat',sans-serif; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; height:auto; }
+    ul { list-style:none; }
+    section { scroll-margin-top:72px; }
+
+    .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+    .section-title {
+      font-weight:900; font-size:clamp(1.8rem,4vw,2.8rem);
+      color:var(--verde-oscuro); text-align:center; margin-bottom:.75rem;
+    }
+    .section-subtitle {
+      text-align:center; color:#666; font-size:1.05rem;
+      max-width:720px; margin:0 auto 3rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:14px 28px; border-radius:50px;
+      font-family:'Montserrat',sans-serif; font-weight:700;
+      font-size:.9rem; letter-spacing:.5px; cursor:pointer;
+      border:none; transition:var(--tx); text-transform:uppercase;
+    }
+    .btn-verde-oscuro   { background:var(--verde-oscuro);   color:var(--blanco); }
+    .btn-verde-oscuro:hover { background:var(--azul-claro); transform:translateY(-2px); box-shadow:var(--sombra-lg); }
+    .btn-naranja { background:var(--naranja); color:var(--blanco); }
+    .btn-naranja:hover { background:#e65100; transform:translateY(-2px); box-shadow:var(--sombra-lg); }
+    .btn-outline { background:transparent; border:2px solid var(--blanco); color:var(--blanco); }
+    .btn-outline:hover { background:var(--blanco); color:var(--verde-oscuro); }
+    .btn-azul-ray    { background:var(--azul-ray);   color:var(--blanco); }
+    .btn-azul-ray:hover { background:#0d47a1; transform:translateY(-2px); }
+    .btn-dorado  { background:var(--dorado); color:#222; }
+    .btn-dorado:hover { background:#ffb300; transform:translateY(-2px); }
+    .btn-wa      { background:#2B4D86; color:var(--blanco); }
+    .btn-wa:hover { background:#1A3863; transform:translateY(-2px); }
+
+    /* ================================================
+       NAVBAR
+    ================================================ */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      background:var(--blanco); padding:14px 0;
+      transition:var(--tx);
+    }
+    .navbar.scrolled { box-shadow:0 2px 20px rgba(0,0,0,.12); padding:9px 0; }
+    .navbar .container { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+
+    .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-logo-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.nav-logo-text strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: .95rem;
+    color: var(--verde-oscuro);
+    line-height: 1.2;
+}
+
+.nav-logo-text span {
+    font-size: .72rem;
+    color: #777;
+}
+
+    .nav-links { display:flex; align-items:center; gap:18px; }
+    .nav-links a {
+      font-family:'Montserrat',sans-serif; font-weight:600;
+      font-size:.78rem; color:var(--gris-texto); transition:var(--tx);
+      text-transform:uppercase; letter-spacing:.4px; white-space:nowrap;
+    }
+    .nav-links a:hover { color:var(--verde-oscuro); }
+    .nav-cta { background:var(--naranja) !important; color:var(--blanco) !important; padding:8px 16px; border-radius:50px; }
+    .nav-cta:hover { background:#e65100 !important; }
+    .nav-verificar { display:flex; align-items:center; gap:4px; }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+    .hamburger span { display:block; width:24px; height:3px; background:var(--verde-oscuro); border-radius:2px; transition:var(--tx); }
+
+    .mobile-nav {
+      display:none; position:fixed; top:68px; left:0; right:0;
+      background:var(--blanco); box-shadow:var(--sombra); padding:20px; z-index:999;
+    }
+    .mobile-nav.open { display:block; }
+    .mobile-nav ul { display:flex; flex-direction:column; gap:4px; }
+    .mobile-nav a {
+      display:block; padding:12px 16px; border-radius:8px;
+      font-family:'Montserrat',sans-serif; font-weight:600; font-size:.9rem;
+      color:var(--gris-texto); transition:var(--tx);
+    }
+    .mobile-nav a:hover { background:var(--gris-claro); color:var(--verde-oscuro); }
+    .mobile-nav .nav-cta { background:var(--naranja) !important; color:var(--blanco) !important; text-align:center; margin-top:8px; }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .hero {
+      min-height:100vh;
+      background:
+        linear-gradient(rgba(26,56,99,.88),rgba(43, 77, 134.88)),
+        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&auto=format&fit=crop&q=80')
+        center/cover no-repeat;
+      display:flex; align-items:center;
+      padding-top:80px; position:relative; overflow:hidden;
+    }
+    .hero::after {
+      content:''; position:absolute; bottom:-1px; left:0; right:0;
+      height:80px; background:var(--blanco);
+      clip-path:ellipse(55% 100% at 50% 100%);
+    }
+    .hero-content { text-align:center; color:var(--blanco); max-width:920px; margin:0 auto; padding:60px 20px; }
+    .hero h1 { font-size:clamp(2rem,5vw,3.8rem); font-weight:900; line-height:1.1; margin-bottom:1.5rem; text-shadow:0 2px 10px rgba(0,0,0,.25); }
+    .hero h1 .highlight { color:var(--dorado); }
+    .hero-subtitle { font-size:clamp(1rem,2vw,1.2rem); opacity:.95; max-width:730px; margin:0 auto 2rem; line-height:1.75; }
+    .hero-badges { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:2.5rem; }
+    .hero-badge {
+      background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.35);
+      padding:8px 16px; border-radius:50px; font-size:.82rem; font-weight:600;
+      display:flex; align-items:center; gap:6px; backdrop-filter:blur(4px);
+    }
+    .hero-ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    /* ================================================
+       STATS
+    ================================================ */
+    .stats { background:var(--blanco); padding:70px 0; }
+    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+    .stat-card {
+      text-align:center; padding:30px 20px;
+      background:var(--gris-claro); border-radius:var(--radio);
+      border-top:4px solid var(--verde-oscuro); transition:var(--tx);
+    }
+    .stat-card:hover { transform:translateY(-6px); box-shadow:var(--sombra); }
+    .stat-number { font-family:'Oswald',sans-serif; font-size:3rem; font-weight:600; color:var(--verde-oscuro); line-height:1; margin-bottom:8px; }
+    .stat-label { font-size:.85rem; color:#666; font-weight:600; text-transform:uppercase; letter-spacing:.5px; }
+
+    /* ================================================
+       QUIÉNES SOMOS
+    ================================================ */
+    .quienes { padding:80px 0; background:var(--gris-claro); }
+    .quienes-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .qs-content h2 { color:var(--verde-oscuro); margin-bottom:1.5rem; font-size:clamp(1.6rem,3vw,2.2rem); }
+    .qs-content p  { margin-bottom:1rem; line-height:1.8; }
+    .qs-content ul { padding-left:20px; list-style:disc; margin-bottom:1rem; }
+    .qs-content li { margin-bottom:6px; line-height:1.6; }
+    .qs-highlight  { background:#e8f5e9; border-left:4px solid var(--verde-oscuro); padding:18px 22px; border-radius:0 8px 8px 0; margin:1.2rem 0; font-style:italic; }
+    .qs-image { border-radius:15px; overflow:hidden; box-shadow:var(--sombra-lg); height:460px; }
+    .qs-image img  { width:100%; height:100%; object-fit:cover; }
+
+    /* ================================================
+       SERVICIOS
+    ================================================ */
+    .servicios { padding:80px 0; background:var(--blanco); }
+    .servicios-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-bottom:45px; }
+    .serv-card {
+      background:var(--blanco); border-radius:15px; padding:35px 25px;
+      box-shadow:var(--sombra); border-top:4px solid var(--verde-oscuro); transition:var(--tx);
+      display:flex; flex-direction:column;
+    }
+    .serv-card:hover { transform:translateY(-8px); box-shadow:var(--sombra-lg); }
+    .serv-icon {
+      width:60px; height:60px; background:#e8f5e9; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.5rem; color:var(--verde-oscuro); margin-bottom:18px;
+    }
+    .serv-num { font-family:'Oswald',sans-serif; font-size:2.8rem; color:#e8f5e9; font-weight:600; line-height:1; margin-bottom:10px; }
+    .serv-card h3 { color:var(--verde-oscuro); margin-bottom:12px; font-size:1.05rem; }
+    .serv-card p, .serv-card li { font-size:.88rem; color:#555; line-height:1.75; }
+    .serv-card ul { padding-left:16px; list-style:disc; margin-top:8px; }
+    .serv-card li { margin-bottom:4px; }
+    .mas-servicios { background:var(--gris-claro); border-radius:15px; padding:40px; }
+    .mas-servicios h3 { color:var(--verde-oscuro); margin-bottom:22px; font-size:1.2rem; }
+    .mas-servicios-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .mas-item {
+      display:flex; align-items:center; gap:10px; padding:12px 16px;
+      background:var(--blanco); border-radius:8px; font-size:.88rem; font-weight:600;
+      transition:var(--tx); cursor:default;
+    }
+    .mas-item:hover { background:var(--verde-oscuro); color:var(--blanco); }
+
+    /* ================================================
+       CURSO
+    ================================================ */
+    .curso { padding:80px 0; background:var(--gris-claro); }
+
+    /* Process */
+    .proceso { display:flex; justify-content:center; margin-bottom:60px; flex-wrap:wrap; gap:10px; }
+    .proceso-paso { flex:1; min-width:130px; max-width:180px; text-align:center; position:relative; }
+    .proceso-paso:not(:last-child)::after {
+      content:'›'; position:absolute; right:-14px; top:22px;
+      font-size:2rem; color:var(--verde-oscuro); font-weight:bold;
+    }
+    .proceso-num {
+      width:60px; height:60px; background:var(--verde-oscuro); color:var(--blanco);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-family:'Oswald',sans-serif; font-size:1.5rem; margin:0 auto 14px; position:relative; z-index:1;
+    }
+    .proceso-tit { font-weight:700; font-size:.88rem; color:var(--verde-oscuro); margin-bottom:4px; }
+    .proceso-desc { font-size:.78rem; color:#666; }
+
+    /* Material apoyo */
+    .material-banner {
+      background:linear-gradient(135deg,#1A3863,#2B4D86); color:var(--blanco);
+      border-radius:15px; padding:30px 35px; margin-bottom:50px;
+      display:flex; align-items:center; justify-content:space-between; gap:20px;
+      box-shadow:var(--sombra);
+    }
+    .material-banner-text h3 { font-size:1.2rem; margin-bottom:6px; }
+    .material-banner-text p  { font-size:.88rem; opacity:.9; }
+
+    /* Progress */
+    .progreso-bar {
+      background:var(--blanco); border-radius:12px; padding:20px 28px;
+      box-shadow:var(--sombra); margin-bottom:40px;
+    }
+    .progreso-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .progreso-head strong { font-weight:700; color:var(--verde-oscuro); }
+    .progreso-count { font-family:'Oswald',sans-serif; font-size:1.2rem; color:var(--verde-oscuro); }
+    .progreso-track { background:#e8f5e9; border-radius:50px; height:12px; overflow:hidden; }
+    .progreso-fill { height:100%; background:linear-gradient(90deg,var(--verde-oscuro),var(--azul-claro)); border-radius:50px; transition:width .5s ease; }
+    .progreso-dots { display:flex; gap:8px; margin-top:12px; }
+    .progreso-dot { flex:1; text-align:center; font-size:.72rem; color:#bbb; transition:var(--tx); }
+    .progreso-dot.done { color:var(--verde-oscuro); font-weight:700; }
+    .progreso-dot-circle { width:12px; height:12px; border-radius:50%; background:#ddd; margin:0 auto 4px; transition:var(--tx); }
+    .progreso-dot.done .progreso-dot-circle { background:var(--verde-oscuro); }
+
+    /* Modules */
+    .modulos { display:flex; flex-direction:column; gap:38px; }
+    .modulo {
+      background:var(--blanco); border-radius:15px; overflow:hidden;
+      box-shadow:var(--sombra); transition:var(--tx);
+    }
+    .modulo:hover { box-shadow:var(--sombra-lg); }
+    .modulo-header {
+      background:var(--verde-oscuro); color:var(--blanco);
+      padding:18px 28px; display:flex; align-items:center; gap:16px;
+    }
+    .mod-num { font-family:'Oswald',sans-serif; font-size:2.5rem; opacity:.25; line-height:1; }
+    .mod-head-txt h3 { font-size:1.15rem; font-weight:700; }
+    .mod-head-txt p  { font-size:.82rem; opacity:.85; margin-top:2px; }
+    .mod-badge {
+      margin-left:auto; background:rgba(255,255,255,.15); padding:5px 14px;
+      border-radius:50px; font-size:.8rem; display:flex; align-items:center; gap:6px;
+      white-space:nowrap; flex-shrink:0;
+    }
+    .mod-badge.done { background:var(--dorado); color:#333; }
+    .modulo-body { display:grid; grid-template-columns:1fr 1fr; gap:28px; padding:28px; }
+    .video-wrap { border-radius:10px; overflow:hidden; background:#000; aspect-ratio:16/9; }
+    .video-wrap iframe { width:100%; height:100%; border:none; }
+    .mod-desc h4 { color:var(--verde-oscuro); margin-bottom:10px; font-size:.95rem; }
+    .mod-desc p  { font-size:.88rem; color:#555; margin-bottom:10px; line-height:1.75; }
+    .mod-desc ul { padding-left:16px; list-style:disc; font-size:.88rem; color:#555; }
+    .mod-desc li { margin-bottom:5px; line-height:1.5; }
+    .mod-note {
+      margin-top:14px; padding:10px 14px; background:#e8f5e9;
+      border-radius:8px; font-size:.8rem; color:var(--verde-oscuro);
+      display:flex; align-items:center; gap:7px;
+    }
+
+    /* Evaluación */
+    .eval-block {
+      background:var(--blanco); border-radius:15px; padding:50px 40px;
+      text-align:center; box-shadow:var(--sombra); margin-top:40px;
+      position:relative; overflow:hidden;
+    }
+    .eval-lock {
+      position:absolute; inset:0; background:rgba(255,255,255,.93);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:2;
+    }
+    .eval-lock i { font-size:4rem; color:#bbb; margin-bottom:16px; }
+    .eval-lock p { color:#888; font-weight:600; max-width:320px; font-size:.95rem; }
+    .eval-block .eval-ico { font-size:4rem; margin-bottom:18px; }
+    .eval-block h2 { color:var(--verde-oscuro); margin-bottom:12px; font-size:1.8rem; }
+    .eval-block > p { color:#555; margin-bottom:28px; max-width:600px; margin-left:auto; margin-right:auto; }
+    .eval-tags { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+    .eval-tag {
+      padding:8px 16px; border-radius:50px; font-size:.85rem; font-weight:600;
+      background:#e8f5e9; color:var(--verde-oscuro);
+    }
+
+    /* Pago */
+    .pago-block {
+      background:linear-gradient(135deg,#1A3863,#2B4D86); color:var(--blanco);
+      border-radius:15px; padding:50px 40px; text-align:center;
+      box-shadow:var(--sombra); margin-top:28px; display:none;
+    }
+    .pago-block.visible { display:block; }
+    .pago-block h2 { color:var(--dorado); margin-bottom:10px; font-size:1.9rem; }
+    .pago-block > .pago-sub { opacity:.9; margin-bottom:40px; font-size:1rem; }
+    .pago-precio { font-family:'Oswald',sans-serif; font-size:4.5rem; color:var(--dorado); line-height:1; margin-bottom:6px; }
+    .pago-precio-label { font-size:.9rem; opacity:.8; margin-bottom:40px; }
+    .pago-pasos { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-bottom:40px; }
+    .pago-paso { background:rgba(255,255,255,.1); border-radius:12px; padding:25px 18px; }
+    .pago-paso-num {
+      width:44px; height:44px; background:var(--dorado); color:#222;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-family:'Oswald',sans-serif; font-size:1.3rem; margin:0 auto 14px;
+    }
+    .pago-paso h4 { margin-bottom:10px; font-size:.95rem; }
+    .pago-paso p  { font-size:.82rem; opacity:.85; line-height:1.65; }
+    .pago-ctas { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+    /* Formulario datos */
+    .reg-form { background:var(--blanco); border-radius:15px; padding:35px; box-shadow:var(--sombra); margin-top:28px; display:none; }
+    .reg-form.visible { display:block; }
+    .reg-form h3 { color:var(--verde-oscuro); margin-bottom:20px; font-size:1.2rem; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .form-group { display:flex; flex-direction:column; gap:6px; }
+    .form-group.full { grid-column:1/-1; }
+    .form-group label { font-weight:600; font-size:.82rem; color:var(--gris-texto); }
+    .form-group input, .form-group select, .form-group textarea {
+      padding:12px 16px; border:2px solid #e0e0e0; border-radius:8px;
+      font-family:'Open Sans',sans-serif; font-size:.93rem; transition:var(--tx); outline:none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--verde-oscuro); }
+
+    /* ================================================
+       VERIFICAR
+    ================================================ */
+    .verificar { padding:80px 0; background:var(--blanco); }
+    .verificar-card {
+      max-width:620px; margin:0 auto; background:var(--gris-claro);
+      border-radius:20px; padding:50px 40px; text-align:center; box-shadow:var(--sombra);
+    }
+    .verificar-card .icon-big { font-size:4rem; color:var(--verde-oscuro); margin-bottom:16px; }
+    .verificar-form { display:flex; gap:12px; margin:28px 0; }
+    .verificar-input {
+      flex:1; padding:14px 20px; border:2px solid #ddd; border-radius:50px;
+      font-family:'Roboto Mono',monospace; font-size:.95rem;
+      letter-spacing:2px; text-transform:uppercase; outline:none; transition:var(--tx);
+    }
+    .verificar-input:focus { border-color:var(--verde-oscuro); }
+    .ver-result { margin-top:20px; padding:25px; border-radius:12px; display:none; text-align:left; }
+    .ver-result.vigente   { background:#e8f5e9; border:2px solid var(--verde-oscuro); display:block; }
+    .ver-result.vencido   { background:#fff3e0; border:2px solid #ff9800; display:block; }
+    .ver-result.not-found { background:#ffebee; border:2px solid var(--rojo);  display:block; }
+    .ver-result h4 { margin-bottom:10px; font-size:1rem; }
+    .ver-result p  { font-size:.88rem; margin-bottom:5px; }
+    .ver-result .ver-badge {
+      display:inline-block; padding:4px 12px; border-radius:50px; font-size:.8rem;
+      font-weight:700; margin-top:10px;
+    }
+    .vigente .ver-badge { background:var(--verde-oscuro); color:var(--blanco); }
+    .vencido .ver-badge  { background:#ff9800; color:var(--blanco); }
+    .ver-note { font-size:.8rem; color:#888; margin-top:16px; }
+
+    /* ================================================
+       FAQ
+    ================================================ */
+    .faq { padding:80px 0; background:var(--gris-claro); }
+    .faq-list { max-width:860px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+    .faq-item { background:var(--blanco); border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+    .faq-q {
+      padding:20px 24px; display:flex; align-items:center; justify-content:space-between;
+      gap:14px; cursor:pointer; font-weight:700; color:var(--gris-texto);
+      transition:var(--tx); font-size:.93rem;
+    }
+    .faq-q:hover, .faq-q.open { color:var(--verde-oscuro); }
+    .faq-icon {
+      flex-shrink:0; width:30px; height:30px; background:var(--gris-claro);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      transition:var(--tx); font-size:.9rem;
+    }
+    .faq-q.open .faq-icon { background:var(--verde-oscuro); color:var(--blanco); transform:rotate(45deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .45s ease; }
+    .faq-a-inner {
+      padding:0 24px 20px; color:#555; font-size:.9rem; line-height:1.8;
+      border-top:1px solid #f0f0f0; padding-top:14px;
+    }
+    .faq-a-inner ol { padding-left:18px; }
+    .faq-a-inner li { margin-bottom:8px; }
+    .faq-cta { text-align:center; margin-top:40px; }
+
+    /* ================================================
+       CONTACTO
+    ================================================ */
+    .contacto { padding:80px 0; background:var(--blanco); }
+    .contacto-grid { display:grid; grid-template-columns:1fr 1.6fr; gap:60px; }
+    .contacto-info h3 { color:var(--verde-oscuro); margin-bottom:22px; font-size:1.25rem; }
+    .c-item { display:flex; align-items:flex-start; gap:14px; margin-bottom:22px; }
+    .c-icon {
+      width:44px; height:44px; background:#e8f5e9; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--verde-oscuro); font-size:1.05rem; flex-shrink:0;
+    }
+    .c-item strong { display:block; font-weight:700; margin-bottom:3px; }
+    .c-item a { color:var(--azul-ray); }
+    .redes { display:flex; gap:10px; margin-top:8px; }
+    .red {
+      width:42px; height:42px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.15rem; color:var(--blanco); transition:var(--tx);
+    }
+    .red:hover { transform:translateY(-3px); box-shadow:var(--sombra); }
+    .red.fb { background:#1877f2; }
+    .red.ig { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .red.yt { background:#ff0000; }
+    .red.wa { background:#25D366; }
+
+    .cform { background:var(--gris-claro); border-radius:15px; padding:38px; }
+    .cform h3 { color:var(--verde-oscuro); margin-bottom:22px; font-size:1.25rem; }
+    .radio-group { display:flex; flex-wrap:wrap; gap:10px; margin-top:5px; }
+    .radio-item { display:flex; align-items:center; gap:7px; cursor:pointer; font-size:.88rem; }
+    .mapa { margin-top:50px; border-radius:15px; overflow:hidden; box-shadow:var(--sombra); height:360px; }
+    .mapa iframe { width:100%; height:100%; border:none; }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    .footer { background:#111; color:#bbb; padding:60px 0 28px; }
+    .footer-grid { display:grid; grid-template-columns:1.4fr 1fr 1.2fr 1.3fr; gap:40px; margin-bottom:40px; }
+    .footer-brand .fl { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+    .footer-brand .fl-icon {
+      width:48px; height:48px; background:var(--verde-oscuro); border-radius:50%;
+      display:flex; align-items:center; justify-content:center; color:var(--blanco); font-size:1.3rem;
+    }
+    .footer-brand .fl-txt strong { display:block; font-family:'Montserrat',sans-serif; font-weight:900; color:var(--blanco); font-size:.9rem; }
+    .footer-brand .fl-txt span   { font-size:.72rem; }
+    .footer-desc { font-size:.83rem; line-height:1.75; margin-bottom:14px; }
+    .footer-redes { display:flex; gap:8px; }
+    .footer-h { font-family:'Montserrat',sans-serif; font-weight:700; color:var(--blanco); margin-bottom:18px; font-size:.82rem; text-transform:uppercase; letter-spacing:1px; }
+    .footer-nav { display:flex; flex-direction:column; gap:9px; }
+    .footer-nav a { font-size:.83rem; color:#bbb; transition:var(--tx); }
+    .footer-nav a:hover { color:var(--azul-claro); }
+    .footer-ci { display:flex; flex-direction:column; gap:13px; }
+    .footer-ci-item { display:flex; align-items:flex-start; gap:8px; font-size:.82rem; }
+    .footer-ci-item i { color:var(--azul-claro); margin-top:3px; flex-shrink:0; }
+    .footer-bottom {
+      border-top:1px solid #2a2a2a; padding-top:22px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:14px; font-size:.78rem;
+    }
+    .footer-bottom-links { display:flex; gap:18px; }
+    .footer-bottom-links a { color:#888; transition:var(--tx); }
+    .footer-bottom-links a:hover { color:var(--azul-claro); }
+
+    /* ================================================
+       FLOATING BUTTONS
+    ================================================ */
+    .float-wrap { position:fixed; bottom:24px; right:24px; display:flex; flex-direction:column; gap:12px; z-index:900; }
+    .float-btn {
+      width:54px; height:54px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.4rem; color:var(--blanco); transition:var(--tx);
+      box-shadow:0 4px 16px rgba(0,0,0,.3); text-decoration:none;
+    }
+    .float-btn:hover { transform:scale(1.12); }
+    .float-wa { background:#25D366; animation:pulse-wa 2s infinite; }
+    .float-curso { background:var(--naranja); display:none; }
+    @keyframes pulse-wa {
+      0%   { box-shadow:0 0 0 0 rgba(37,211,102,.7); }
+      70%  { box-shadow:0 0 0 14px rgba(37,211,102,0); }
+      100% { box-shadow:0 0 0 0 rgba(37,211,102,0); }
+    }
+
+    /* ================================================
+       RESPONSIVE
+    ================================================ */
+    @media (max-width:1024px) {
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+      .quienes-grid { grid-template-columns:1fr; }
+      .qs-image { height:280px; }
+      .servicios-grid { grid-template-columns:1fr; }
+      .mas-servicios-grid { grid-template-columns:repeat(2,1fr); }
+      .proceso-paso::after { display:none; }
+      .material-banner { flex-direction:column; text-align:center; }
+      .modulo-body { grid-template-columns:1fr; }
+      .pago-pasos { grid-template-columns:1fr; }
+      .form-grid { grid-template-columns:1fr; }
+      .contacto-grid { grid-template-columns:1fr; }
+      .verificar-form { flex-direction:column; }
+      .float-curso { display:flex; }
+      .footer-grid { grid-template-columns:1fr; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+    }
+    @media (max-width:480px) {
+      .stats-grid { grid-template-columns:1fr 1fr; }
+      .mas-servicios-grid { grid-template-columns:1fr; }
+      .hero-ctas { flex-direction:column; align-items:center; }
+      .eval-tags { flex-direction:column; align-items:center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================================================
+     NAVBAR
+================================================ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#inicio" class="nav-logo">
+      
+      <div class="nav-logo-icon">
+    <img src="img/logo.png" alt="Mercedes Pinilla"></div>
+      
+      <div class="nav-logo-text">
+        <h1><strong>Mercedes Pinilla</strong></h1>
+        <span>Centro de Capacitación</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#quienes-somos">Quiénes Somos</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#curso">Cursos</a></li>
+      <li><a href="#verificar" class="nav-verificar"><i class="fas fa-search"></i> Verificar Certificado</a></li>
+      <li><a href="#curso" class="nav-cta">Empieza Gratis →</a></li>
+    </ul>
+
+    <div class="hamburger" id="hamburger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="#inicio"       onclick="closeMobile()">Inicio</a></li>
+    <li><a href="#quienes-somos" onclick="closeMobile()">Quiénes Somos</a></li>
+    <li><a href="#servicios"    onclick="closeMobile()">Servicios</a></li>
+    <li><a href="#curso"        onclick="closeMobile()">Cursos</a></li>
+    <li><a href="#faq"          onclick="closeMobile()">FAQ</a></li>
+    <li><a href="#contacto"     onclick="closeMobile()">Contacto</a></li>
+    <li><a href="#verificar"    onclick="closeMobile()">🔎 Verificar Certificado</a></li>
+    <li><a href="#curso"        onclick="closeMobile()" class="nav-cta">🎓 Empieza Gratis</a></li>
+  </ul>
+</div>
+
+<!-- ================================================
+     HERO
+================================================ -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <h1>
+      Haz con nosotros tu Curso de<br>
+      Manipulación de Alimentos<br>
+      <span class="highlight">¡Por solo $40.000!</span>
+    </h1>
+    <p class="hero-subtitle">
+      Toma el curso en modalidad virtual, desde la comodidad de tu casa, ya sea desde tu celular, tablet o computador, a cualquier hora del día. Obten tu certificado de capacitación cumpliendo con las exigencias sanitarias nacionales.
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge"><i class="fas fa-check-circle"></i> Válido en todo Colombia</span>
+      <span class="hero-badge"><i class="fas fa-gavel"></i> Resolución 1279 de 2022</span>
+      <span class="hero-badge"><i class="fas fa-gavel"></i> Resolución 1378 de 2022</span>
+      <span class="hero-badge"><i class="fas fa-award"></i> +40 años de experiencia</span>
+      <span class="hero-badge"><i class="fas fa-clock"></i> Certificado en menos de 24 horas</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#curso" class="btn btn-naranja"><i class="fas fa-graduation-cap"></i> Empieza tu Curso Ahora</a>
+      <a href="#quienes-somos" class="btn btn-outline"><i class="fas fa-play"></i> Ver cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     STATS
+================================================ -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="stat-number" data-target="500">0</div>
+        <div class="stat-label">Empresas Asesoradas</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="stat-number" data-target="4000">0</div>
+        <div class="stat-label">Personas Capacitadas</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat-number" data-target="300">0</div>
+        <div class="stat-label">Planes de Saneamiento</div>
+      </div>
+      <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="stat-number" data-target="2000">0</div>
+        <div class="stat-label">Certificados Expedidos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     QUIÉNES SOMOS
+================================================ -->
+<section class="quienes" id="quienes-somos">
+  <div class="container">
+    <div class="quienes-grid">
+      <div class="qs-content" data-aos="fade-right">
+        <h2>¿Quiénes Somos?</h2>
+        <p>
+          Somos el <strong>Centro de Capacitación Mercedes Pinilla</strong>. En nuestra trayectoria respaldada por más de <strong>treinta y siete años de experiencia profesional</strong>, nos hemos destacado por ser una empresa con altos estándares de formación al personal del sector de alimentos en las áreas de:
+        </p>
+        <ul style="list-style:disc;padding-left:20px;margin-bottom:1rem;">
+          <li>Higiene de los alimentos</li>
+          <li>Buenas Prácticas de Manufactura (BPM)</li>
+          <li>Sistemas preventivos de aseguramiento de la inocuidad</li>
+          <li>Principios de procesamiento de alimentos y ciencia y tecnología alimentaria</li>
+        </ul>
+        <p>
+          Adicionalmente, asesoramos a tu empresa o negocio en los procesos de acreditación de calidad, obtención de conceptos sanitarios favorables, trámite de registros, permisos o notificaciones sanitarias, planes de saneamiento básico y planes de capacitación continuo y permanente.
+        </p>
+        <div class="qs-highlight">
+          Certifícate de manera <strong>100% legal, fácil y rápido</strong> mediante nuestra plataforma virtual en manejo higiénico de los alimentos y BPM, para que puedas trabajar en toda Colombia como manipulador de alimentos.
+        </div>
+        <p>Acompañamos tus procesos de acreditación de calidad, visitas <strong>INVIMA</strong> y Secretaría de Salud, y saneamiento básico ambiental a nivel institucional, comercial e industrial.</p>
+        <a href="https://wa.me/573118851271?text=Hola%2C%20quiero%20información%20sobre%20los%20cursos"
+           target="_blank" rel="noopener" class="btn btn-wa" style="margin-top:1.5rem;">
+          <i class="fab fa-whatsapp"></i> Escríbenos al 311 885 1271
+        </a>
+      </div>
+      <div class="qs-image" data-aos="fade-left">
+        <img
+          src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=800&auto=format&fit=crop&q=80"
+          alt="Manipulación de alimentos profesional"
+          loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     SERVICIOS
+================================================ -->
+<section class="servicios" id="servicios">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Con Nosotros Podrás Encontrar</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Ofrecemos formación profesional, asesoría técnica y consultoría especializada para el sector de alimentos.</p>
+
+    <div class="servicios-grid">
+      <!-- Servicio 01 -->
+      <div class="serv-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="serv-num">01</div>
+        <div class="serv-icon"><i class="fas fa-laptop"></i></div>
+        <h3>Curso de Manipulación de Alimentos</h3>
+        <p>
+          Si tomas nuestro curso en su modalidad <strong>virtual</strong>, tendrás la posibilidad de obtener el material de apoyo, aprender del manejo higiénico e inocuo de los alimentos y certificarte en <strong>Educación Sanitaria, Principios Básicos de BPM y Prácticas Higiénicas</strong>, tal como lo exige la <strong>Resolución 2674 de 2013</strong>.
+        </p>
+        <p style="margin-top:10px;">También puedes realizar el curso de manera <strong>presencial</strong> con pagos autónomos, subvencionados o bonificados por los negocios o empresas.</p>
+        <a href="#curso" class="btn btn-verde-oscuro" style="margin-top:auto;padding-top:20px;text-align:center;justify-content:center;">
+          <i class="fas fa-play"></i> Ver el Curso
+        </a>
+      </div>
+
+      <!-- Servicio 02 -->
+      <div class="serv-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="serv-num">02</div>
+        <div class="serv-icon"><i class="fas fa-building"></i></div>
+        <h3>Planes de Capacitación Empresarial</h3>
+        <p>Realizamos y ejecutamos planes de capacitación continuo y permanente para el personal manipulador de alimentos de tu establecimiento, acordes con la empresa y la normatividad vigente:</p>
+        <ul>
+          <li>Resolución 2674 de 2013</li>
+          <li>Decreto 1500 de 2007</li>
+          <li>Decreto 1686 de 2012</li>
+          <li>Decreto 1880 de 2011</li>
+          <li>Resolución 604 de 1993</li>
+          <li>Resolución 683 de 2012</li>
+        </ul>
+        <a href="https://wa.me/573118851271?text=Hola%2C%20quiero%20información%20sobre%20los%20cursos"
+           target="_blank" rel="noopener" class="btn btn-wa" style="margin-top:auto;padding-top:20px;text-align:center;justify-content:center;">
+          <i class="fas fa-envelope"></i> Contáctanos
+        </a>
+      </div>
+
+      <!-- Servicio 03 -->
+      <div class="serv-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="serv-num">03</div>
+        <div class="serv-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Asesoría y Consultoría Profesional</h3>
+        <p>Somos un equipo profesional con amplia experiencia, dispuestos a apoyarte en las necesidades técnicas y tecnológicas de tu establecimiento de alimentos:</p>
+        <ul>
+          <li>Sistemas de gestión de calidad (HACCP, BPM, ISO 9000, ISO 14000, ISO 22000)</li>
+          <li>Diseño, montaje y puesta en marcha de negocios de alimentos</li>
+          <li>Diseño de nuevos productos y técnicas productivas</li>
+          <li>Trámite de registros, permisos y notificaciones sanitarias</li>
+        </ul>
+        <a href="https://wa.me/573118851271?text=Hola%2C%20quiero%20información%20sobre%20los%20cursos"
+           target="_blank" rel="noopener" class="btn btn-verde-oscuro" style="margin-top:auto;padding-top:20px;text-align:center;justify-content:center;">
+          <i class="fas fa-handshake"></i> Solicitar Asesoría
+        </a>
+      </div>
+    </div>
+
+    <!-- Más Servicios -->
+    <div class="mas-servicios" data-aos="fade-up">
+      <h3><i class="fas fa-plus-circle"></i> Más Servicios Disponibles</h3>
+      <div class="mas-servicios-grid">
+        <div class="mas-item">🥩 Cursos de productos cárnicos</div>
+        <div class="mas-item">🥛 Cursos de derivados lácteos</div>
+        <div class="mas-item">🥗 Cursos de ensaladas saludables</div>
+        <div class="mas-item">🥫 Cursos de conservación de alimentos</div>
+        <div class="mas-item">🍦 Curso de elaboración de helados</div>
+        <div class="mas-item">🗺️ Diseño de Planes de Saneamiento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     CURSO
+================================================ -->
+<section class="curso" id="curso">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Curso de Higiene y Manipulación de Alimentos</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Aprende a tu ritmo. 5 módulos diseñados por profesionales en calidad, higiene e inocuidad alimentaria. <strong>Por solo $40.000.</strong>
+    </p>
+
+    <!-- Proceso -->
+    <div class="proceso" data-aos="fade-up">
+      <div class="proceso-paso">
+        <div class="proceso-num">1</div>
+        <div class="proceso-tit">Ver Videos</div>
+        <div class="proceso-desc">5 módulos (Gratis)</div>
+      </div>
+      <div class="proceso-paso">
+        <div class="proceso-num">2</div>
+        <div class="proceso-tit">Presentar Evaluación</div>
+        <div class="proceso-desc">Mínimo 70% (Gratis)</div>
+      </div>
+      <div class="proceso-paso">
+        <div class="proceso-num">3</div>
+        <div class="proceso-tit">Realizar el Pago</div>
+        <div class="proceso-desc">$40.000 vía Nequi</div>
+      </div>
+      <div class="proceso-paso">
+        <div class="proceso-num">4</div>
+        <div class="proceso-tit">Recibir Certificado</div>
+        <div class="proceso-desc">Menos de 24 horas</div>
+      </div>
+    </div>
+
+    <!-- Material de apoyo -->
+    <div class="material-banner" data-aos="fade-up">
+      <div class="material-banner-text">
+        <h3><i class="fas fa-folder-open"></i> Material de Apoyo</h3>
+        <p>Descarga y estudia el material complementario del curso. Te ayudará a afianzar tus conocimientos en educación sanitaria y BPM.</p>
+      </div>
+      <a href="https://drive.google.com/drive/folders/1zGjHIVIzVRsmuvYbMoNdEwrJLQChDc_P?usp=sharing"
+         target="_blank" rel="noopener" class="btn btn-dorado" style="flex-shrink:0;">
+        <i class="fas fa-download"></i> Ver Material
+      </a>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div class="progreso-bar" data-aos="fade-up">
+      <div class="progreso-head">
+        <strong>Tu progreso en el curso</strong>
+        <span class="progreso-count"><span id="modCount">0</span>/5 módulos</span>
+      </div>
+      <div class="progreso-track">
+        <div class="progreso-fill" id="progresoFill" style="width:0%"></div>
+      </div>
+      <div class="progreso-dots">
+        <div class="progreso-dot" id="dot1"><div class="progreso-dot-circle"></div>Módulo 1</div>
+        <div class="progreso-dot" id="dot2"><div class="progreso-dot-circle"></div>Módulo 2</div>
+        <div class="progreso-dot" id="dot3"><div class="progreso-dot-circle"></div>Módulo 3</div>
+        <div class="progreso-dot" id="dot4"><div class="progreso-dot-circle"></div>Módulo 4</div>
+        <div class="progreso-dot" id="dot5"><div class="progreso-dot-circle"></div>Módulo 5</div>
+      </div>
+    </div>
+
+    <!-- Módulos -->
+    <div class="modulos">
+
+      <!-- MÓDULO 1 -->
+      <div class="modulo" data-aos="fade-up" id="modulo-1">
+        <div class="modulo-header">
+          <div class="mod-num">01</div>
+          <div class="mod-head-txt">
+            <h3>Marco Legal</h3>
+            <p>Resolución 2674 de 2013 y normatividad sanitaria vigente</p>
+          </div>
+          <div class="mod-badge" id="badge-1"><i class="fas fa-circle"></i> Pendiente</div>
+        </div>
+        <div class="modulo-body">
+          <div class="video-wrap">
+            <!--
+              IMPORTANTE: Reemplaza VIDEO_ID_MODULO_1 con el ID real del video de YouTube.
+              El ID se encuentra en la URL: youtube.com/watch?v=ESTE_ES_EL_ID
+              Canal: https://www.youtube.com/channel/UCBmlQ9iYl2w4EJ2-TYOFP5A
+            -->
+            <iframe
+              id="yt-1"
+              src="https://www.youtube.com/embed/voLkSQI18_Q?enablejsapi=1&rel=0"
+              title="Módulo 1 — Marco Legal"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="mod-desc">
+            <h4><i class="fas fa-info-circle" style="color:var(--verde-oscuro)"></i> ¿Qué aprenderás?</h4>
+            <p>Conocerás el marco legal que deben cumplir las personas naturales y/o jurídicas que ejercen actividades de fabricación, procesamiento, preparación, envase, almacenamiento, transporte, distribución y comercialización de alimentos y materias primas, de acuerdo con la <strong>Resolución 2674 de 2013</strong>.</p>
+            <p>Además, las normas específicas vigentes para manipuladores de:</p>
+            <ul>
+              <li>Carne y productos cárnicos comestibles</li>
+              <li>Bebidas alcohólicas</li>
+              <li>Leche cruda para consumo humano directo</li>
+              <li>Alimentos en vía pública en ventas autorizadas</li>
+              <li>Envases, materiales y equipos en contacto con alimentos</li>
+            </ul>
+            <div class="mod-note">
+              <i class="fas fa-info-circle"></i>
+              Debes ver al menos el <strong>90% del video</strong> para registrar el módulo como completado.
+            </div>
+            <button onclick="marcarManual(1)" class="btn btn-verde-oscuro" style="margin-top:14px;font-size:.8rem;padding:10px 18px;">
+              <i class="fas fa-check"></i> Marcar como visto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 2 -->
+      <div class="modulo" data-aos="fade-up" id="modulo-2">
+        <div class="modulo-header">
+          <div class="mod-num">02</div>
+          <div class="mod-head-txt">
+            <h3>Higiene Personal del Manipulador</h3>
+            <p>Artículo 14 de la Resolución 2674 de 2013</p>
+          </div>
+          <div class="mod-badge" id="badge-2"><i class="fas fa-circle"></i> Pendiente</div>
+        </div>
+        <div class="modulo-body">
+          <div class="video-wrap">
+            <!-- Reemplaza VIDEO_ID_MODULO_2 -->
+            <iframe
+              id="yt-2"
+              src="https://www.youtube.com/embed/0IT3TC-XmUg?enablejsapi=1&rel=0"
+              title="Módulo 2 — Higiene Personal"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="mod-desc">
+            <h4><i class="fas fa-info-circle" style="color:var(--verde-oscuro)"></i> ¿Qué aprenderás?</h4>
+            <p>Las prácticas higiénicas y medidas de protección que todo manipulador de alimentos debe adoptar:</p>
+            <ul>
+              <li>Lavado correcto de manos (técnica y frecuencia)</li>
+              <li>Uso adecuado de uniformes y elementos de protección personal (EPP)</li>
+              <li>Estado de salud: enfermedades que impiden la manipulación</li>
+              <li>Hábitos y comportamientos dentro de las áreas de producción</li>
+              <li>Certificado médico de aptitud para la manipulación</li>
+            </ul>
+            <div class="mod-note">
+              <i class="fas fa-info-circle"></i>
+              Debes ver al menos el <strong>90% del video</strong> para registrar el módulo como completado.
+            </div>
+            <button onclick="marcarManual(2)" class="btn btn-verde-oscuro" style="margin-top:14px;font-size:.8rem;padding:10px 18px;">
+              <i class="fas fa-check"></i> Marcar como visto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 3 -->
+      <div class="modulo" data-aos="fade-up" id="modulo-3">
+        <div class="modulo-header">
+          <div class="mod-num">03</div>
+          <div class="mod-head-txt">
+            <h3>Buenas Prácticas de Manufactura (BPM)</h3>
+            <p>Principios básicos de higiene en la manipulación y procesamiento</p>
+          </div>
+          <div class="mod-badge" id="badge-3"><i class="fas fa-circle"></i> Pendiente</div>
+        </div>
+        <div class="modulo-body">
+          <div class="video-wrap">
+            <!-- Reemplaza VIDEO_ID_MODULO_3 -->
+            <iframe
+              id="yt-3"
+              src="https://www.youtube.com/embed/pUZIWDgQ_7U?enablejsapi=1&rel=0"
+              title="Módulo 3 — BPM"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="mod-desc">
+            <h4><i class="fas fa-info-circle" style="color:var(--verde-oscuro)"></i> ¿Qué aprenderás?</h4>
+            <p>Los principios básicos y prácticas generales de higiene en la manipulación, procesamiento, preparación, envasado, almacenamiento y transporte de alimentos:</p>
+            <ul>
+              <li>Condiciones de las instalaciones y áreas de proceso</li>
+              <li>Equipos y utensilios: limpieza, desinfección y mantenimiento</li>
+              <li>Materias primas: recepción, almacenamiento y control</li>
+              <li>Operaciones de fabricación: procedimientos y controles</li>
+              <li>Almacenamiento de producto terminado y transporte</li>
+            </ul>
+            <div class="mod-note">
+              <i class="fas fa-info-circle"></i>
+              Debes ver al menos el <strong>90% del video</strong> para registrar el módulo como completado.
+            </div>
+            <button onclick="marcarManual(3)" class="btn btn-verde-oscuro" style="margin-top:14px;font-size:.8rem;padding:10px 18px;">
+              <i class="fas fa-check"></i> Marcar como visto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 4 -->
+      <div class="modulo" data-aos="fade-up" id="modulo-4">
+        <div class="modulo-header">
+          <div class="mod-num">04</div>
+          <div class="mod-head-txt">
+            <h3>Enfermedades Transmitidas por Alimentos (ETA)</h3>
+            <p>Prevención y control de riesgos microbiológicos</p>
+          </div>
+          <div class="mod-badge" id="badge-4"><i class="fas fa-circle"></i> Pendiente</div>
+        </div>
+        <div class="modulo-body">
+          <div class="video-wrap">
+            <!-- Reemplaza VIDEO_ID_MODULO_4 -->
+            <iframe
+              id="yt-4"
+              src="https://www.youtube.com/embed/e0Q066uBDEY?enablejsapi=1&rel=0"
+              title="Módulo 4 — ETA"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="mod-desc">
+            <h4><i class="fas fa-info-circle" style="color:var(--verde-oscuro)"></i> ¿Qué aprenderás?</h4>
+            <p>Las enfermedades transmitidas por alimentos (ETA) son un problema de salud pública. Aprenderás:</p>
+            <ul>
+              <li>Definición y clasificación de las ETA</li>
+              <li>Principales microorganismos causantes: bacterias, virus, parásitos y hongos</li>
+              <li>Alimentos de alto riesgo epidemiológico</li>
+              <li>Condiciones que favorecen el crecimiento microbiano</li>
+              <li>Medidas de prevención y control: cadena de frío, cocción segura</li>
+            </ul>
+            <div class="mod-note">
+              <i class="fas fa-info-circle"></i>
+              Debes ver al menos el <strong>90% del video</strong> para registrar el módulo como completado.
+            </div>
+            <button onclick="marcarManual(4)" class="btn btn-verde-oscuro" style="margin-top:14px;font-size:.8rem;padding:10px 18px;">
+              <i class="fas fa-check"></i> Marcar como visto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MÓDULO 5 -->
+      <div class="modulo" data-aos="fade-up" id="modulo-5">
+        <div class="modulo-header">
+          <div class="mod-num">05</div>
+          <div class="mod-head-txt">
+            <h3>Saneamiento Básico y Plan de Saneamiento</h3>
+            <p>Los 4 programas del plan de saneamiento obligatorio</p>
+          </div>
+          <div class="mod-badge" id="badge-5"><i class="fas fa-circle"></i> Pendiente</div>
+        </div>
+        <div class="modulo-body">
+          <div class="video-wrap">
+            <!-- Reemplaza VIDEO_ID_MODULO_5 -->
+            <iframe
+              id="yt-5"
+              src="https://www.youtube.com/embed/53tcxtO2Dek?enablejsapi=1&rel=0"
+              title="Módulo 5 — Saneamiento Básico"
+              allowfullscreen
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+          </div>
+          <div class="mod-desc">
+            <h4><i class="fas fa-info-circle" style="color:var(--verde-oscuro)"></i> ¿Qué aprenderás?</h4>
+            <p>El plan de saneamiento es un documento básico obligatorio. Conocerás los cuatro programas que lo conforman:</p>
+            <ul>
+              <li><strong>Limpieza y desinfección:</strong> procedimientos, productos y diluciones</li>
+              <li><strong>Desechos sólidos:</strong> clasificación, almacenamiento y disposición final</li>
+              <li><strong>Control de plagas:</strong> medidas preventivas y métodos de control</li>
+              <li><strong>Agua potable:</strong> fuentes, tratamiento y control de calidad</li>
+            </ul>
+            <div class="mod-note">
+              <i class="fas fa-info-circle"></i>
+              Debes ver al menos el <strong>90% del video</strong> para registrar el módulo como completado.
+            </div>
+            <button onclick="marcarManual(5)" class="btn btn-verde-oscuro" style="margin-top:14px;font-size:.8rem;padding:10px 18px;">
+              <i class="fas fa-check"></i> Marcar como visto
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVALUACIÓN -->
+    <div class="eval-block" id="evalBlock" data-aos="fade-up">
+      <div class="eval-lock" id="evalLock">
+        <i class="fas fa-lock"></i>
+        <p>Debes completar los 5 módulos de video para desbloquear la evaluación.</p>
+      </div>
+      <div class="eval-ico">🎉</div>
+      <h2>¡Completaste todos los módulos!</h2>
+      <p>Ya puedes presentar tu evaluación. Recuerda: necesitas el <strong>70% de respuestas correctas</strong> para aprobar. Puedes presentarla las veces que sea necesario. ¡Sin ningún costo!</p>
+      <div class="eval-tags">
+        <span class="eval-tag"><i class="fas fa-infinity"></i> Intentos ilimitados</span>
+        <span class="eval-tag"><i class="fas fa-trophy"></i> Mínimo 70% para aprobar</span>
+        <span class="eval-tag"><i class="fas fa-gift"></i> Completamente gratis</span>
+      </div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScczqSSdBXQcdStbdP2sWV4Pv8Gj45Z0Bt6NoBrNeGxkyGp6g/viewform"
+         target="_blank" rel="noopener" class="btn btn-azul-ray" style="font-size:1rem;padding:16px 36px;">
+        <i class="fas fa-file-alt"></i> Presentar Evaluación Ahora
+      </a>
+      <div style="margin-top:28px;padding:20px;background:#f9f9f9;border-radius:12px;">
+        <p style="font-weight:700;margin-bottom:10px;">¿Ya aprobaste la evaluación con 70% o más?</p>
+        <button onclick="mostrarPago()" class="btn btn-naranja">
+          <i class="fas fa-check-circle"></i> Sí, aprobé — Ver instrucciones de pago
+        </button>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE DATOS -->
+    <div class="reg-form" id="regForm">
+      <h3><i class="fas fa-user" style="color:var(--verde-oscuro)"></i> Datos para tu Certificado</h3>
+      <p style="color:#666;font-size:.9rem;margin-bottom:20px;">Completa tus datos. Estos se usarán para generar tu certificado oficial.</p>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nombre completo *</label>
+          <input type="text" id="reg-nombre" placeholder="Juan Carlos Pérez Rodríguez" required>
+        </div>
+        <div class="form-group">
+          <label>Número de cédula *</label>
+          <input type="text" id="reg-cedula" placeholder="1001234567" required>
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico *</label>
+          <input type="email" id="reg-email" placeholder="tuemail@correo.com" required>
+        </div>
+        <div class="form-group">
+          <label>Teléfono / WhatsApp *</label>
+          <input type="tel" id="reg-tel" placeholder="3001234567" required>
+        </div>
+        <div class="form-group full">
+          <label>Ciudad de residencia *</label>
+          <input type="text" id="reg-ciudad" placeholder="Yopal, Casanare" required>
+        </div>
+      </div>
+      <div style="margin-top:20px;text-align:center;">
+        <button onclick="guardarYPagar()" class="btn btn-verde-oscuro" style="font-size:1rem;padding:16px 36px;">
+          <i class="fas fa-arrow-right"></i> Guardar y Continuar al Pago
+        </button>
+      </div>
+    </div>
+
+    <!-- PAGO -->
+    <div class="pago-block" id="pagoBlock">
+      <h2>✅ ¡Felicitaciones! Aprobaste la Evaluación</h2>
+      <p class="pago-sub">Para recibir tu <strong>certificado oficial de Manipulación de Alimentos</strong>, sigue estos sencillos pasos:</p>
+
+      <div class="pago-precio">$40.000</div>
+      <div class="pago-precio-label">Pago único — Nequi al 311 885 1271</div>
+
+      <div class="pago-pasos">
+        <div class="pago-paso">
+          <div class="pago-paso-num">1</div>
+          <h4>Realiza el Pago</h4>
+          <p>Abre tu app <strong>Nequi</strong>, envía <strong>$40.000</strong> al número <strong>3118851271</strong> a nombre de <strong>Mercedes Pinilla</strong>. En el concepto escribe tu nombre completo y número de cédula.</p>
+        </div>
+        <div class="pago-paso">
+          <div class="pago-paso-num">2</div>
+          <h4>Envía el Comprobante</h4>
+          <p>Toma una captura de pantalla del comprobante de pago de Nequi y envíala por <strong>WhatsApp al 3118851271</strong>. Incluye tu nombre, cédula y correo electrónico.</p>
+        </div>
+        <div class="pago-paso">
+          <div class="pago-paso-num">3</div>
+          <h4>Recibe tu Certificado</h4>
+          <p>Una vez verificado el pago, <strong>en el transcurso del mismo día</strong> recibirás tu certificado por correo electrónico o WhatsApp, según tu preferencia.</p>
+        </div>
+      </div>
+
+      <div class="pago-ctas">
+        <a href="nequi://transfer?phone=3118851271&amount=40000"
+           class="btn btn-dorado">
+          <i class="fas fa-mobile-alt"></i> Pagar por Nequi — $40.000
+        </a>
+        <a href="https://wa.me/573118851271?text=Hola%2C%20realicé%20el%20pago%20de%20mi%20certificado%20de%20manipulación%20de%20alimentos%20vía%20Nequi."
+           target="_blank" rel="noopener" class="btn btn-wa">
+          <i class="fab fa-whatsapp"></i> Enviar Comprobante por WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================
+     VERIFICAR CERTIFICADO
+================================================ -->
+<section class="verificar" id="verificar">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Verificar Autenticidad del Certificado</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Ingresa el código único que aparece en el certificado para comprobar su validez.
+    </p>
+    <div class="verificar-card" data-aos="fade-up">
+      <div class="icon-big"><i class="fas fa-certificate"></i></div>
+      <p style="color:#555;margin-bottom:0;">Ingresa el código único del certificado (formato: <span style="font-family:'Roboto Mono',monospace;font-weight:700;">MP-YYYYMMDD-XXXXXX</span>)</p>
+      <div class="verificar-form">
+        <input type="text" class="verificar-input" id="codigoInput"
+               placeholder="MP-20260625-A7F3K2" maxlength="20"
+               oninput="this.value=this.value.toUpperCase()">
+        <button onclick="verificarCertificado()" class="btn btn-verde-oscuro">
+          <i class="fas fa-search"></i> Verificar
+        </button>
+      </div>
+      <div class="ver-result" id="verResult"></div>
+      <p class="ver-note">
+        <i class="fas fa-info-circle"></i>
+        ¿Tienes problemas con la verificación? Contáctanos al
+        <a href="https://wa.me/573118851271" target="_blank" rel="noopener" style="color:var(--azul-ray)">WhatsApp 311 885 1271</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     FAQ
+================================================ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Preguntas Frecuentes</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Todo lo que necesitas saber sobre nuestro curso y certificado.</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Es válido y legal el curso de manipulación virtual?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            De acuerdo con el marco normativo establecido en la <strong>CIRCULAR EXTERNA DAB 4150-10264-19 del INVIMA</strong>, no existe inconveniente en realizar capacitación a manipuladores de alimentos por medio de alternativas tecnológicas como el medio virtual, siempre y cuando se cuente con la orientación de profesionales o tecnólogos y se cumpla con los demás requisitos normativos exigidos para los capacitadores.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿El certificado es válido en todo el país?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Sí. De acuerdo con la <strong>Circular Externa DAB 4150-10264-19 del INVIMA</strong>, los capacitadores de manipuladores de alimentos, una vez obtenida la autorización, esta será válida para todo el territorio nacional.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuánto tiempo debo esperar para recibir mi certificado?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Una vez realizado el pago y enviado el recibo de Nequi al WhatsApp <strong>3118851271</strong>, este será validado. Una vez verificado, <strong>en el transcurso del mismo día</strong> se hará llegar el certificado vía correo electrónico o WhatsApp, según tu preferencia.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué pasa si no apruebo la evaluación en el primer intento?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            No hay problema. Puedes presentar la evaluación <strong>todas las veces que sea necesario</strong>, de forma completamente <strong>gratuita</strong>, hasta que obtengas el puntaje mínimo requerido (70% de respuestas correctas).
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿El certificado tiene fecha de vencimiento?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Sí. El certificado tiene una vigencia de <strong>1 año</strong> contado a partir de la fecha de expedición. Puedes consultar la vigencia en cualquier momento usando el <strong>verificador de certificados</strong> en esta página.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Por qué tomar el curso con ustedes?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Somos una empresa que busca innovar en los distintos procesos, entregando calidad en cada uno de nuestros servicios y ofreciendo el mejor precio del mercado. Con <strong>más de 37 años de experiencia</strong>, diseñamos el curso de manipulación de alimentos en modalidad online para que puedas formarte y certificarte desde donde quieras y cuando quieras.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Tengo una empresa de alimentos y deseo que mis empleados se certifiquen. ¿Qué hago?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Brindamos a los establecimientos de alimentos programas de formación y actualización al personal manipulador de alimentos, acordes con las necesidades de capacitación de la empresa, ya sea en procesos técnicos, productivos o en higiene e inocuidad alimentaria. <a href="#contacto" style="color:var(--azul-ray)"><strong>Contáctanos</strong></a> para brindarte más información.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Cuáles son los requisitos para ser manipulador de alimentos en Colombia?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            De acuerdo con la <strong>Resolución 2674 de 2013</strong>, el personal manipulador de alimentos debe cumplir con:
+            <ol>
+              <li><strong>Estado de salud:</strong> Certificación médica que conste aptitud para la manipulación de alimentos.</li>
+              <li><strong>Educación y capacitación:</strong> Formación en educación sanitaria, principios básicos de BPM y prácticas higiénicas en manipulación de alimentos.</li>
+              <li><strong>Prácticas higiénicas:</strong> Adoptar prácticas higiénicas y medidas de protección acordes con el trabajo a desempeñar.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          ¿Qué validez tiene el carné de manipulador de alimentos en Colombia?
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            De acuerdo con el <strong>comunicado 4000-0034-2021 del INVIMA</strong>, el carnet de manipulador de alimentos solo se debe exigir en las acciones de inspección, vigilancia y control realizadas por las Entidades Territoriales de Salud, únicamente a las personas de ventas de alimentos en vía pública autorizadas previamente, y verificar que la actividad fue realizada por capacitadores autorizados por la Entidad Territorial de Salud.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="faq-cta" data-aos="fade-up">
+      <p style="color:#666;margin-bottom:16px;">¿Tienes más preguntas?</p>
+      <a href="https://wa.me/573118851271" target="_blank" rel="noopener" class="btn btn-naranja"><i class="fab fa-whatsapp"></i> Contáctanos por WhatsApp</a>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ================================================
+     FOOTER
+================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="fl">
+          <div class="fl-icon"><i class="fas fa-utensils"></i></div>
+          <div class="fl-txt">
+            <strong>Mercedes Pinilla</strong>
+            <span>Centro de Capacitación</span>
+          </div>
+        </div>
+        <p class="footer-desc">Formación profesional en higiene e inocuidad alimentaria. Más de 37 años de experiencia al servicio del sector de alimentos en Colombia.</p>
+        <p class="footer-desc" style="font-size:.75rem;color:#666;">Resolución 1279 de 2022 y Resolución 1378 de 2022 — Secretaría de Salud de Casanare</p>
+        <div class="footer-redes">
+          <a href="https://www.facebook.com/Centro-de-Formaci%C3%B3n-de-Alimentos-Mercedes-Pinilla-225507498101542/" target="_blank" rel="noopener" class="red fb" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/capacitacion.alimentos.mp" target="_blank" rel="noopener" class="red ig" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/channel/UCBmlQ9iYl2w4EJ2-TYOFP5A" target="_blank" rel="noopener" class="red yt" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://wa.me/573118851271" target="_blank" rel="noopener" class="red wa" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-h">Navegación</div>
+        <nav class="footer-nav">
+          <a href="#inicio">Inicio</a>
+          <a href="#quienes-somos">Quiénes Somos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#curso">Cursos</a>
+          <a href="#verificar">Verificar Certificado</a>
+          <a href="#faq">Preguntas Frecuentes</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="footer-h">Servicios</div>
+        <nav class="footer-nav">
+          <a href="#servicios">Cursos Virtuales</a>
+          <a href="#servicios">Capacitación Empresarial</a>
+          <a href="#servicios">Asesoría y Consultoría</a>
+          <a href="#servicios">Planes de Saneamiento</a>
+          <a href="#curso">Evaluación Online</a>
+          <a href="#verificar">Certificados</a>
+        </nav>
+      </div>
+
+      <div>
+        <div class="footer-h">Contacto</div>
+        <div class="footer-ci">
+          <div class="footer-ci-item"><i class="fas fa-map-marker-alt"></i><span>Cra 23 N°28-46, Yopal, Casanare</span></div>
+          <div class="footer-ci-item"><i class="fab fa-whatsapp"></i><span>311 885 1271</span></div>
+          <div class="footer-ci-item"><i class="fas fa-envelope"></i><span>contactenos@cursosdealimentos.com</span></div>
+          <div class="footer-ci-item"><i class="fas fa-globe"></i><span>cursosdealimentos.com</span></div>
+        </div>
+        <div style="margin-top:20px;">
+          <a href="#curso" class="btn btn-verde-oscuro" style="font-size:.8rem;padding:10px 20px;">
+            <i class="fas fa-graduation-cap"></i> Toma el Curso Gratis
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Mercedes Pinilla — Centro de Capacitación. Todos los derechos reservados.</p>
+      <div class="footer-bottom-links">
+        <a href="#" onclick="return false">Política de Privacidad</a>
+        <a href="#" onclick="return false">Términos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================
+     FLOATING BUTTONS
+================================================ -->
+<div class="float-wrap">
+  <a href="#curso" class="float-btn float-curso" aria-label="Empezar curso">
+    <i class="fas fa-graduation-cap"></i>
+  </a>
+  <a href="https://wa.me/573118851271?text=Hola%2C%20quiero%20información%20sobre%20los%20cursos%20de%20manipulación%20de%20alimentos."
+     target="_blank" rel="noopener" class="float-btn float-wa" aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- AOS Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  /* ============================================
+     INIT
+  ============================================ */
+  AOS.init({ duration: 700, once: true, offset: 80 });
+
+  /* ============================================
+     NAVBAR
+  ============================================ */
+  window.addEventListener('scroll', function () {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  document.getElementById('hamburger').addEventListener('click', function () {
+    document.getElementById('mobileNav').classList.toggle('open');
+  });
+
+  function closeMobile() {
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+
+  /* ============================================
+     STATS COUNTER
+  ============================================ */
+  var countersStarted = false;
+
+  function startCounters() {
+    if (countersStarted) return;
+    countersStarted = true;
+    document.querySelectorAll('.stat-number[data-target]').forEach(function (el) {
+      var target = parseInt(el.dataset.target, 10);
+      var step = Math.ceil(target / 60);
+      var current = 0;
+      var timer = setInterval(function () {
+        current = Math.min(current + step, target);
+        el.textContent = current.toLocaleString('es-CO') + '+';
+        if (current >= target) clearInterval(timer);
+      }, 30);
+    });
+  }
+
+  var statsObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) startCounters(); });
+  }, { threshold: 0.3 });
+  statsObserver.observe(document.querySelector('.stats'));
+
+  /* ============================================
+     PROGRESS TRACKING
+  ============================================ */
+  var completados = JSON.parse(localStorage.getItem('modulosCompletados') || '[]');
+
+  function actualizarProgreso() {
+    var n = completados.length;
+    document.getElementById('modCount').textContent = n;
+    document.getElementById('progresoFill').style.width = (n / 5 * 100) + '%';
+    for (var i = 1; i <= 5; i++) {
+      var dot  = document.getElementById('dot' + i);
+      var badge = document.getElementById('badge-' + i);
+      if (completados.indexOf(i) !== -1) {
+        dot.classList.add('done');
+        if (badge) {
+          badge.innerHTML = '<i class="fas fa-check-circle"></i> Completado';
+          badge.classList.add('done');
+        }
+      }
+    }
+    if (n >= 5) {
+      var lock = document.getElementById('evalLock');
+      if (lock) lock.style.display = 'none';
+    }
+  }
+
+  function marcarManual(num) {
+    if (completados.indexOf(num) === -1) {
+      completados.push(num);
+      localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+    }
+    actualizarProgreso();
+  }
+
+  actualizarProgreso();
+
+  /* ============================================
+     FAQ ACCORDION
+  ============================================ */
+  function toggleFaq(btn) {
+    var item   = btn.parentElement;
+    var answer = item.querySelector('.faq-a');
+    var isOpen = btn.classList.contains('open');
+
+    document.querySelectorAll('.faq-q.open').forEach(function (q) {
+      q.classList.remove('open');
+      q.parentElement.querySelector('.faq-a').style.maxHeight = '0';
+    });
+
+    if (!isOpen) {
+      btn.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  }
+
+  /* ============================================
+     EVALUACIÓN / PAGO
+  ============================================ */
+  function mostrarPago() {
+    document.getElementById('regForm').classList.add('visible');
+    document.getElementById('regForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function guardarYPagar() {
+    var nombre = document.getElementById('reg-nombre').value.trim();
+    var cedula = document.getElementById('reg-cedula').value.trim();
+    var email  = document.getElementById('reg-email').value.trim();
+    var tel    = document.getElementById('reg-tel').value.trim();
+    var ciudad = document.getElementById('reg-ciudad').value.trim();
+
+    if (!nombre || !cedula || !email || !tel || !ciudad) {
+      alert('Por favor completa todos los campos obligatorios.');
+      return;
+    }
+
+    localStorage.setItem('userData', JSON.stringify({ nombre, cedula, email, tel, ciudad }));
+    document.getElementById('pagoBlock').classList.add('visible');
+    document.getElementById('pagoBlock').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* ============================================
+     VERIFICAR CERTIFICADO
+     (Demo estática — para datos reales se requiere backend PHP/Node)
+  ============================================ */
+  var certDB = {
+    'MP-20260625-A7F3K2': {
+      titular: 'Juan Carlos Pérez Rodríguez', cedula: '1.001.234.567',
+      emision: '25 de junio de 2026', vence: '25 de junio de 2027', estado: 'vigente'
+    }
+  };
+
+  function verificarCertificado() {
+    var codigo = document.getElementById('codigoInput').value.trim().toUpperCase();
+    var el = document.getElementById('verResult');
+    el.className = 'ver-result';
+    el.style.display = 'none';
+
+    if (!codigo) { alert('Por favor ingresa el código del certificado.'); return; }
+
+    var cert = certDB[codigo];
+
+    if (cert) {
+      if (cert.estado === 'vigente') {
+        el.className = 'ver-result vigente';
+        el.innerHTML =
+          '<h4>✅ Certificado Válido y Vigente</h4>' +
+          '<p><strong>Titular:</strong> ' + cert.titular + '</p>' +
+          '<p><strong>Cédula:</strong> ' + cert.cedula + '</p>' +
+          '<p><strong>Curso:</strong> Manipulación de Alimentos</p>' +
+          '<p><strong>Fecha de emisión:</strong> ' + cert.emision + '</p>' +
+          '<p><strong>Válido hasta:</strong> ' + cert.vence + '</p>' +
+          '<span class="ver-badge">🟢 VIGENTE</span>' +
+          '<p style="margin-top:12px;font-size:.8rem;">Expedido por: Centro de Capacitación Mercedes Pinilla — Yopal, Casanare</p>';
+      } else {
+        el.className = 'ver-result vencido';
+        el.innerHTML =
+          '<h4>⚠️ Certificado Vencido</h4>' +
+          '<p><strong>Titular:</strong> ' + cert.titular + '</p>' +
+          '<p><strong>Válido hasta:</strong> ' + cert.vence + '</p>' +
+          '<span class="ver-badge">🔴 VENCIDO</span>' +
+          '<p style="margin-top:14px;">Para renovarlo, <a href="#curso" style="color:var(--azul-ray)">toma el curso nuevamente</a>.</p>';
+      }
+    } else {
+      el.className = 'ver-result not-found';
+      el.innerHTML =
+        '<h4>❌ Certificado No Encontrado</h4>' +
+        '<p>El código ingresado no corresponde a ningún certificado expedido por nuestro centro.</p>' +
+        '<p>Verifique que el código esté correctamente escrito.</p>' +
+        '<p style="margin-top:10px;">Si el problema persiste, contáctenos al <a href="https://wa.me/573118851271" target="_blank" style="color:var(--azul-ray)">WhatsApp 311 885 1271</a>.</p>';
+    }
+
+    el.style.display = 'block';
+  }
+
+  document.getElementById('codigoInput').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') verificarCertificado();
+  });
+
+  /* ============================================
+     FORMULARIO CONTACTO
+  ============================================ */
+  function enviarContacto(e) {
+    e.preventDefault();
+    var form = e.target;
+    var nombre  = form.nombre.value.trim();
+    var correo  = form.correo.value.trim();
+    var asunto  = form.asunto.value.trim();
+    var mensaje = form.mensaje.value.trim();
+    var interes = form.interes.value;
+    var msg = document.getElementById('formMsg');
+
+    var texto = encodeURIComponent(
+      'Hola, soy ' + nombre + '.\n' +
+      'Correo: ' + correo + '\n' +
+      'Interés: ' + interes + '\n' +
+      'Asunto: ' + asunto + '\n\n' +
+      mensaje
+    );
+
+    window.open('https://wa.me/573118851271?text=' + texto, '_blank');
+
+    msg.style.display = 'block';
+    msg.style.color = 'var(--verde-oscuro)';
+    msg.innerHTML = '<i class="fas fa-check-circle"></i> ¡Mensaje enviado! Te redirigimos a WhatsApp para completar el envío.';
+    form.reset();
+  }
+</script>
+
+</body>
+</html>
