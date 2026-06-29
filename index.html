@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Curso de Manipulación de Alimentos totalmente gratis. Certifícate de forma 100% legal y válido en toda Colombia. Centro de Capacitación Mercedes Pinilla — Yopal, Casanare.">
-  <meta name="keywords" content="manipulación de alimentos, curso virtual gratis, certificado Colombia, INVIMA, BPM, higiene alimentaria, Resolución 2674">
-  <meta property="og:title" content="Curso de Manipulación de Alimentos Gratis — Mercedes Pinilla">
+  <meta name="description" content="Curso de Manipulación de Alimentos totalmente gratis y certificate por solo $40,000. Certifícate de forma 100% legal y válido en toda Colombia. Centro de Capacitación Mercedes Pinilla — Yopal, Casanare.">
+  <meta name="keywords" content="manipulación de alimentos, curso virtual gratis y certificate por solo $40,000, certificado Colombia, INVIMA, BPM, higiene alimentaria, Resolución 2674">
+  <meta property="og:title" content="Curso de Manipulación de Alimentos Gratis y y certificate por solo $40,000 — Mercedes Pinilla">
   <meta property="og:description" content="Toma el curso en línea, aprueba la evaluación y recibe tu certificado. Válido en todo Colombia.">
   <title>Curso Manipulación de Alimentos | Centro de Capacitación Mercedes Pinilla</title>
 
@@ -547,6 +547,65 @@
       .hero-ctas { flex-direction:column; align-items:center; }
       .eval-tags { flex-direction:column; align-items:center; }
     }
+
+    /* ================================================
+       QUIZ INLINE
+    ================================================ */
+    .quiz-progreso { background:#e0e0e0; border-radius:50px; height:10px; overflow:hidden; margin-bottom:8px; }
+    .quiz-progreso-fill { height:100%; background:linear-gradient(90deg,var(--verde-oscuro),var(--azul-claro)); border-radius:50px; transition:width .3s ease; }
+    .quiz-meta { display:flex; justify-content:space-between; font-size:.8rem; color:#888; margin-bottom:28px; flex-wrap:wrap; gap:4px; }
+    .quiz-unidad-header {
+      background:var(--verde-oscuro); color:var(--blanco);
+      padding:10px 18px; border-radius:8px;
+      font-family:'Montserrat',sans-serif; font-weight:700;
+      font-size:.8rem; text-transform:uppercase; letter-spacing:.5px;
+      margin-bottom:14px;
+    }
+    .quiz-unidad-header + .quiz-q-card { margin-top:0; }
+    .quiz-q-card {
+      background:#f9f9f9; border-radius:12px; padding:22px;
+      margin-bottom:14px; border-left:4px solid var(--verde-oscuro);
+      transition:border-color .2s;
+    }
+    .quiz-q-card.sin-responder { border-left-color:var(--rojo); background:#fff5f5; }
+    .quiz-q-num { font-family:'Oswald',sans-serif; font-size:.82rem; color:var(--verde-oscuro); letter-spacing:.5px; margin-bottom:8px; font-weight:600; }
+    .quiz-q-text { font-weight:700; font-size:.93rem; color:var(--gris-texto); margin-bottom:16px; line-height:1.55; }
+    .quiz-options { display:flex; flex-direction:column; gap:9px; }
+    .quiz-opt-label {
+      display:flex; align-items:center; gap:12px; padding:11px 16px;
+      background:var(--blanco); border:2px solid #e0e0e0; border-radius:8px;
+      cursor:pointer; transition:var(--tx); font-size:.88rem; user-select:none;
+    }
+    .quiz-opt-label:hover { border-color:var(--verde-oscuro); background:#eef2f8; }
+    .quiz-opt-label input[type=radio] { accent-color:var(--verde-oscuro); width:17px; height:17px; flex-shrink:0; cursor:pointer; }
+    .quiz-opt-letra {
+      width:26px; height:26px; border-radius:50%; flex-shrink:0;
+      background:var(--verde-oscuro); color:var(--blanco);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.72rem; font-weight:700;
+    }
+    /* Resultado */
+    .quiz-opt-label.correcta  { border-color:#4CAF50; background:#e8f5e9; font-weight:700; }
+    .quiz-opt-label.incorrecta { border-color:#C62828; background:#ffebee; }
+    .quiz-q-card.rev-ok  { border-left-color:#4CAF50; }
+    .quiz-q-card.rev-mal { border-left-color:#C62828; }
+    .quiz-score-wrap { display:flex; justify-content:center; margin-bottom:20px; }
+    .quiz-score-circle {
+      width:140px; height:140px; border-radius:50%;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      font-family:'Oswald',sans-serif;
+    }
+    .quiz-score-circle.aprobado { background:#e8f5e9; border:5px solid #4CAF50; color:var(--verde-oscuro); }
+    .quiz-score-circle.reprobado { background:#ffebee; border:5px solid #C62828; color:#C62828; }
+    .quiz-score-num { font-size:2.8rem; line-height:1; }
+    .quiz-score-sub { font-size:.75rem; font-weight:400; }
+    .quiz-resumen { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin:18px 0 24px; }
+    .quiz-resumen-item { padding:9px 16px; border-radius:50px; font-size:.85rem; font-weight:700; }
+    .qr-ok  { background:#e8f5e9; color:var(--verde-oscuro); }
+    .qr-mal { background:#ffebee; color:#C62828; }
+    .qr-pct { background:#e3f2fd; color:var(--azul-ray); }
+    .quiz-rev-title { font-weight:700; color:var(--verde-oscuro); margin:24px 0 14px; font-size:1rem; text-align:left; border-top:1px solid #eee; padding-top:20px; }
+    .opt-tag { font-size:.72rem; margin-left:auto; white-space:nowrap; }
   </style>
 </head>
 <body>
@@ -1046,29 +1105,67 @@
       </div>
     </div>
 
-    <!-- EVALUACIÓN -->
-    <div class="eval-block" id="evalBlock" data-aos="fade-up">
+    <!-- EVALUACIÓN / QUIZ INLINE -->
+    <div class="eval-block" id="evalBlock" data-aos="fade-up" style="padding:40px 30px;">
+      <!-- Candado: se oculta al completar los 5 módulos -->
       <div class="eval-lock" id="evalLock">
         <i class="fas fa-lock"></i>
         <p>Debes completar los 5 módulos de video para desbloquear la evaluación.</p>
       </div>
-      <div class="eval-ico">🎉</div>
-      <h2>¡Completaste todos los módulos!</h2>
-      <p>Ya puedes presentar tu evaluación. Recuerda: necesitas el <strong>70% de respuestas correctas</strong> para aprobar. Puedes presentarla las veces que sea necesario. ¡Sin ningún costo!</p>
-      <div class="eval-tags">
-        <span class="eval-tag"><i class="fas fa-infinity"></i> Intentos ilimitados</span>
-        <span class="eval-tag"><i class="fas fa-trophy"></i> Mínimo 70% para aprobar</span>
-        <span class="eval-tag"><i class="fas fa-gift"></i> Completamente gratis</span>
-      </div>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLScczqSSdBXQcdStbdP2sWV4Pv8Gj45Z0Bt6NoBrNeGxkyGp6g/viewform"
-         target="_blank" rel="noopener" class="btn btn-azul-ray" style="font-size:1rem;padding:16px 36px;">
-        <i class="fas fa-file-alt"></i> Presentar Evaluación Ahora
-      </a>
-      <div style="margin-top:28px;padding:20px;background:#f9f9f9;border-radius:12px;">
-        <p style="font-weight:700;margin-bottom:10px;">¿Ya aprobaste la evaluación con 70% o más?</p>
-        <button onclick="mostrarPago()" class="btn btn-naranja">
-          <i class="fas fa-check-circle"></i> Sí, aprobé — Ver instrucciones de pago
+
+      <!-- ── PANTALLA INTRO ── -->
+      <div id="quizIntro">
+        <div class="eval-ico">🎉</div>
+        <h2>¡Completaste todos los módulos!</h2>
+        <p>Ya puedes presentar tu evaluación. Necesitas el <strong>70% de respuestas correctas</strong> (18 de 25) para aprobar. Puedes repetirla las veces que quieras. ¡Totalmente gratis!</p>
+        <div class="eval-tags">
+          <span class="eval-tag"><i class="fas fa-list-ol"></i> 25 preguntas</span>
+          <span class="eval-tag"><i class="fas fa-trophy"></i> Mínimo 70% para aprobar</span>
+          <span class="eval-tag"><i class="fas fa-infinity"></i> Intentos ilimitados</span>
+          <span class="eval-tag"><i class="fas fa-gift"></i> Completamente gratis</span>
+        </div>
+        <button onclick="iniciarQuiz()" class="btn btn-azul-ray" style="font-size:1rem;padding:16px 40px;">
+          <i class="fas fa-pencil-alt"></i> Iniciar Evaluación
         </button>
+      </div>
+
+      <!-- ── FORMULARIO DEL QUIZ ── -->
+      <div id="quizForm" style="display:none;text-align:left;">
+        <h2 style="text-align:center;color:var(--verde-oscuro);margin-bottom:6px;">Evaluación de Inocuidad y Manejo de Alimentos</h2>
+        <p style="text-align:center;color:#666;font-size:.88rem;margin-bottom:20px;">Responde todas las preguntas y pulsa <strong>Calificar</strong> al final.</p>
+        <div class="quiz-progreso"><div class="quiz-progreso-fill" id="quizFill" style="width:0%"></div></div>
+        <div class="quiz-meta">
+          <span id="quizCont">0 de 25 respondidas</span>
+          <span>Mínimo para aprobar: 18 / 25 (70%)</span>
+        </div>
+        <div id="quizPreguntas"></div>
+        <div style="text-align:center;margin-top:28px;">
+          <button onclick="calificarQuiz()" class="btn btn-azul-ray" style="font-size:1rem;padding:16px 40px;">
+            <i class="fas fa-check-double"></i> Calificar Evaluación
+          </button>
+          <p style="font-size:.78rem;color:#aaa;margin-top:10px;">Responde todas las preguntas antes de calificar.</p>
+        </div>
+      </div>
+
+      <!-- ── PANTALLA DE RESULTADO ── -->
+      <div id="quizResultado" style="display:none;text-align:center;">
+        <div class="quiz-score-wrap">
+          <div class="quiz-score-circle" id="scoreCircle">
+            <div class="quiz-score-num" id="scoreNum">0</div>
+            <div class="quiz-score-sub">de 25</div>
+          </div>
+        </div>
+        <h2 id="resTitulo" style="margin-bottom:8px;"></h2>
+        <p id="resMsg" style="color:#555;max-width:520px;margin:0 auto 4px;"></p>
+        <div class="quiz-resumen">
+          <span class="quiz-resumen-item qr-ok"><i class="fas fa-check"></i> <span id="resOk">0</span> correctas</span>
+          <span class="quiz-resumen-item qr-mal"><i class="fas fa-times"></i> <span id="resMal">0</span> incorrectas</span>
+          <span class="quiz-resumen-item qr-pct"><i class="fas fa-percent"></i> <span id="resPct">0</span>% obtenido</span>
+        </div>
+        <div id="resBtns" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;"></div>
+        <!-- Revisión de respuestas -->
+        <div class="quiz-rev-title"><i class="fas fa-eye"></i> Revisión de respuestas</div>
+        <div id="quizRevision" style="text-align:left;"></div>
       </div>
     </div>
 
@@ -1371,7 +1468,7 @@
         </div>
         <div style="margin-top:20px;">
           <a href="#curso" class="btn btn-verde-oscuro" style="font-size:.8rem;padding:10px 20px;">
-            <i class="fas fa-graduation-cap"></i> Toma el Curso Gratis
+            <i class="fas fa-graduation-cap"></i> Toma el Curso 
           </a>
         </div>
       </div>
@@ -1587,6 +1684,222 @@
   document.getElementById('codigoInput').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') verificarCertificado();
   });
+
+  /* ============================================
+     QUIZ INLINE — 25 PREGUNTAS
+  ============================================ */
+  var LETRAS = ['A','B','C','D'];
+  var quizResp = {};   // {preguntaIndex: opcionIndex}
+
+  var PREGUNTAS = [
+    // ── UNIDAD 1 ──────────────────────────────
+    { u:'Unidad 1: Normatividad Sanitaria', n:1,
+      t:'¿Cuál es la norma que constituye la "carta de navegación" para la mayoría de los establecimientos de alimentos en Colombia?',
+      o:['Ley 9 de 1979','Resolución 2674 de 2013','Resolución 604 de 1993','Decreto 1500 de 2007'], c:1 },
+    { u:'Unidad 1: Normatividad Sanitaria', n:2,
+      t:'¿Cuál es la duración mínima obligatoria de la capacitación para manipuladores de alimentos en vía pública?',
+      o:['5 horas','10 horas','12 horas','20 horas'], c:2 },
+    { u:'Unidad 1: Normatividad Sanitaria', n:3,
+      t:'¿Con qué frecuencia mínima debe un manipulador de alimentos realizarse el reconocimiento médico de aptitud?',
+      o:['Cada seis meses','Una vez al año','Cada dos años','Solo al momento de la contratación'], c:1 },
+    { u:'Unidad 1: Normatividad Sanitaria', n:4,
+      t:'El plan de capacitación continua para el personal manipulador debe ser de, por lo menos:',
+      o:['5 horas anuales','10 horas anuales','12 horas anuales','15 horas anuales'], c:1 },
+    { u:'Unidad 1: Normatividad Sanitaria', n:5,
+      t:'El Codex Alimentarius, base de muchas normas nacionales, fue establecido en 1962 por:',
+      o:['El Ministerio de Salud de Colombia','El INVIMA','La FAO/OMS','Las Secretarías de Salud'], c:2 },
+    // ── UNIDAD 2 ──────────────────────────────
+    { u:'Unidad 2: Clasificación y Contaminación de los Alimentos', n:6,
+      t:'¿Qué tipo de alimento se define como aquel que exige condiciones especiales de proceso, conservación y transporte por su alta probabilidad de alteración?',
+      o:['Alimento alterado','Alimento no perecedero','Alimento perecedero','Alimento semiperecedero'], c:2 },
+    { u:'Unidad 2: Clasificación y Contaminación de los Alimentos', n:7,
+      t:'Los cristales, huesos, plásticos y objetos personales en el alimento son ejemplos de:',
+      o:['Contaminación biológica','Contaminación física','Contaminación química','Contaminación endógena'], c:1 },
+    { u:'Unidad 2: Clasificación y Contaminación de los Alimentos', n:8,
+      t:'La contaminación que ocurre cuando un microorganismo ya está presente en el alimento antes de su obtención (zoonosis) se denomina:',
+      o:['Contaminación cruzada','Contaminación exógena','Contaminación endógena','Contaminación accidental'], c:2 },
+    { u:'Unidad 2: Clasificación y Contaminación de los Alimentos', n:9,
+      t:'¿Cuál de los siguientes es un ejemplo de alimento de alto riesgo epidemiológico?',
+      o:['Pastas secas','Aceites vegetales','Carnes y derivados lácteos','Frutos secos'], c:2 },
+    { u:'Unidad 2: Clasificación y Contaminación de los Alimentos', n:10,
+      t:'La transferencia de bacterias de un alimento crudo a uno ya listo para el consumo se conoce como:',
+      o:['Contaminación primaria','Contaminación por plagas','Contaminación cruzada','Infección bacteriana'], c:2 },
+    // ── UNIDAD 3 ──────────────────────────────
+    { u:'Unidad 3: Enfermedades Causadas por los Alimentos (ETA)', n:11,
+      t:'¿Cuál es el rango de temperatura considerado como la "zona de peligro" para el crecimiento bacteriano?',
+      o:['0°C a 100°C','5°C a 65°C','10°C a 40°C','-18°C a 0°C'], c:1 },
+    { u:'Unidad 3: Enfermedades Causadas por los Alimentos (ETA)', n:12,
+      t:'A temperaturas de congelación (menores a 0°C), las bacterias:',
+      o:['Mueren inmediatamente','Se multiplican muy rápido','No mueren, pero paralizan su actividad','Producen más toxinas'], c:2 },
+    { u:'Unidad 3: Enfermedades Causadas por los Alimentos (ETA)', n:13,
+      t:'Una enfermedad causada por consumir alimentos con toxinas producidas por gérmenes o productos químicos se llama:',
+      o:['Infección','Intoxicación','Zoonosis','Parasitosis'], c:1 },
+    { u:'Unidad 3: Enfermedades Causadas por los Alimentos (ETA)', n:14,
+      t:'¿Qué bacteria se asocia comúnmente con huevos, carnes de aves y lácteos?',
+      o:['Clostridium botulinum','Salmonella','Staphylococcus aureus','Listeria monocytogenes'], c:1 },
+    { u:'Unidad 3: Enfermedades Causadas por los Alimentos (ETA)', n:15,
+      t:'¿Qué medida de prevención busca eliminar bacterias mediante el calor en el centro del producto?',
+      o:['Limpieza','Separar','Cocinar (mínimo 65°C)','Enfriar'], c:2 },
+    // ── UNIDAD 4 ──────────────────────────────
+    { u:'Unidad 4: Medidas Higiénicas para Prevenir la Contaminación', n:16,
+      t:'¿Cuál es el principal vehículo transmisor de bacterias en la manipulación de alimentos?',
+      o:['El aire','Las manos','Los utensilios','El calzado'], c:1 },
+    { u:'Unidad 4: Medidas Higiénicas para Prevenir la Contaminación', n:17,
+      t:'Las hortalizas y frutas que se consuman crudas deben someterse a:',
+      o:['Solo lavado con agua tibia','Lavado con agua potable y desinfección autorizada','Cocción rápida','Limpieza con trapos de un solo uso'], c:1 },
+    { u:'Unidad 4: Medidas Higiénicas para Prevenir la Contaminación', n:18,
+      t:'En el almacenamiento, ¿cuál es la distancia mínima que debe haber entre los productos y las paredes?',
+      o:['15 centímetros','30 centímetros','60 centímetros','1 metro'], c:2 },
+    { u:'Unidad 4: Medidas Higiénicas para Prevenir la Contaminación', n:19,
+      t:'Según la norma, la vestimenta del manipulador NO debe tener:',
+      o:['Cierres o cremalleras','Colores claros','Botones o bolsillos arriba de la cintura','Material resistente'], c:2 },
+    { u:'Unidad 4: Medidas Higiénicas para Prevenir la Contaminación', n:20,
+      t:'Los vehículos que transportan alimentos deben llevar obligatoriamente la leyenda:',
+      o:['"Alimentos Frescos"','"Transporte de Alimentos"','"Carga Peligrosa"','"Productos Perecederos"'], c:1 },
+    // ── UNIDAD 5 ──────────────────────────────
+    { u:'Unidad 5: Sistemas de Gestión de Calidad', n:21,
+      t:'¿Qué significan las siglas APPCC?',
+      o:['Asociación de Productores de Control de Calidad','Análisis de Peligros y Puntos de Control Crítico','Aplicación de Procesos de Calidad Continua','Aseguramiento de Productos Críticos y Control'], c:1 },
+    { u:'Unidad 5: Sistemas de Gestión de Calidad', n:22,
+      t:'Para poder aplicar el sistema HACCP o APPCC, es indispensable haber implementado previamente:',
+      o:['La norma ISO 9000','Las Buenas Prácticas de Manufactura (BPM)','Un sistema de marketing','Pruebas de laboratorio diarias'], c:1 },
+    { u:'Unidad 5: Sistemas de Gestión de Calidad', n:23,
+      t:'¿Cuál de los siguientes NO es un programa mínimo del Plan de Saneamiento?',
+      o:['Control de Plagas','Limpieza y Desinfección','Gestión de Ventas y Mercadeo','Abastecimiento de Agua Potable'], c:2 },
+    { u:'Unidad 5: Sistemas de Gestión de Calidad', n:24,
+      t:'La eliminación de suciedad visible mediante agua y detergentes se define como:',
+      o:['Desinfección','Limpieza','Esterilización','Sanitización'], c:1 },
+    { u:'Unidad 5: Sistemas de Gestión de Calidad', n:25,
+      t:'¿Con qué frecuencia mínima se deben lavar los tanques de almacenamiento de agua potable?',
+      o:['Una vez al mes','Cada tres meses','Dos veces al año','Una vez cada dos años'], c:2 }
+  ];
+
+  function iniciarQuiz() {
+    quizResp = {};
+    document.getElementById('quizIntro').style.display = 'none';
+    document.getElementById('quizResultado').style.display = 'none';
+    document.getElementById('quizForm').style.display = 'block';
+    document.getElementById('quizFill').style.width = '0%';
+    document.getElementById('quizCont').textContent = '0 de 25 respondidas';
+    renderizarPreguntas();
+    document.getElementById('evalBlock').scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+
+  function renderizarPreguntas() {
+    var html = '';
+    var unidadActual = '';
+    PREGUNTAS.forEach(function(p, i) {
+      if (p.u !== unidadActual) {
+        unidadActual = p.u;
+        html += '<div class="quiz-unidad-header"><i class="fas fa-layer-group"></i> ' + p.u + '</div>';
+      }
+      html += '<div class="quiz-q-card" id="qcard-' + i + '">';
+      html += '<div class="quiz-q-num">Pregunta ' + p.n + ' de 25</div>';
+      html += '<div class="quiz-q-text">' + p.t + '</div>';
+      html += '<div class="quiz-options">';
+      p.o.forEach(function(opt, j) {
+        html += '<label class="quiz-opt-label" id="optlbl-' + i + '-' + j + '">'
+          + '<input type="radio" name="q' + i + '" value="' + j + '" onchange="registrarResp(' + i + ',' + j + ')">'
+          + '<span class="quiz-opt-letra">' + LETRAS[j] + '</span>'
+          + '<span>' + opt + '</span>'
+          + '</label>';
+      });
+      html += '</div></div>';
+    });
+    document.getElementById('quizPreguntas').innerHTML = html;
+  }
+
+  function registrarResp(qi, oi) {
+    quizResp[qi] = oi;
+    var n = Object.keys(quizResp).length;
+    document.getElementById('quizFill').style.width = (n / 25 * 100) + '%';
+    document.getElementById('quizCont').textContent = n + ' de 25 respondidas';
+    document.getElementById('qcard-' + qi).classList.remove('sin-responder');
+  }
+
+  function calificarQuiz() {
+    var n = Object.keys(quizResp).length;
+    if (n < 25) {
+      var faltantes = [];
+      for (var i = 0; i < 25; i++) { if (quizResp[i] === undefined) faltantes.push(i); }
+      alert('Faltan ' + (25 - n) + ' pregunta(s) por responder. Se marcarán en rojo.');
+      faltantes.forEach(function(i) {
+        document.getElementById('qcard-' + i).classList.add('sin-responder');
+      });
+      document.getElementById('qcard-' + faltantes[0]).scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    var ok = 0;
+    PREGUNTAS.forEach(function(p, i) { if (quizResp[i] === p.c) ok++; });
+    var pct  = Math.round(ok / 25 * 100);
+    var paso = pct >= 70;
+
+    // Actualizar círculo de puntaje
+    var circle = document.getElementById('scoreCircle');
+    circle.className = 'quiz-score-circle ' + (paso ? 'aprobado' : 'reprobado');
+    document.getElementById('scoreNum').textContent = ok;
+    document.getElementById('resOk').textContent  = ok;
+    document.getElementById('resMal').textContent = 25 - ok;
+    document.getElementById('resPct').textContent = pct;
+    document.getElementById('resTitulo').textContent = paso
+      ? '🎉 ¡Felicitaciones! Aprobaste la evaluación'
+      : '😔 No alcanzaste el puntaje mínimo';
+    document.getElementById('resMsg').textContent = paso
+      ? 'Obtuviste ' + pct + '% (' + ok + '/25). Ya puedes continuar con el pago y recibir tu certificado.'
+      : 'Obtuviste ' + pct + '% (' + ok + '/25). Necesitas al menos 70% (18/25). Revisa las respuestas y vuelve a intentarlo.';
+
+    var btnsHtml = '<button onclick="reiniciarQuiz()" class="btn btn-naranja"><i class="fas fa-redo"></i> Volver a intentar</button>';
+    if (paso) {
+      btnsHtml += '<button onclick="mostrarPago()" class="btn btn-verde-oscuro"><i class="fas fa-arrow-right"></i> Continuar al Pago</button>';
+    }
+    document.getElementById('resBtns').innerHTML = btnsHtml;
+
+    // Revisión detallada
+    var revHtml = '';
+    var unidadActual = '';
+    PREGUNTAS.forEach(function(p, i) {
+      var sel = quizResp[i];
+      var esOk = sel === p.c;
+      if (p.u !== unidadActual) {
+        unidadActual = p.u;
+        revHtml += '<div class="quiz-unidad-header" style="margin-top:18px;">' + p.u + '</div>';
+      }
+      revHtml += '<div class="quiz-q-card ' + (esOk ? 'rev-ok' : 'rev-mal') + '">'
+        + '<div class="quiz-q-num">' + (esOk ? '✅' : '❌') + ' Pregunta ' + p.n + '</div>'
+        + '<div class="quiz-q-text">' + p.t + '</div>'
+        + '<div class="quiz-options">';
+      p.o.forEach(function(opt, j) {
+        var cls = j === p.c ? 'correcta' : (j === sel && !esOk ? 'incorrecta' : '');
+        var bgLetra = j === p.c ? '#4CAF50' : (j === sel && !esOk ? '#C62828' : '#bbb');
+        var tag = j === p.c
+          ? '<span class="opt-tag" style="color:#4CAF50;">✓ Correcta</span>'
+          : (j === sel && !esOk ? '<span class="opt-tag" style="color:#C62828;">✗ Tu respuesta</span>' : '');
+        revHtml += '<div class="quiz-opt-label ' + cls + '" style="cursor:default;">'
+          + '<span class="quiz-opt-letra" style="background:' + bgLetra + ';">' + LETRAS[j] + '</span>'
+          + '<span>' + opt + '</span>' + tag + '</div>';
+      });
+      revHtml += '</div></div>';
+    });
+    document.getElementById('quizRevision').innerHTML = revHtml;
+
+    // Mostrar resultado, ocultar form
+    document.getElementById('quizForm').style.display = 'none';
+    document.getElementById('quizResultado').style.display = 'block';
+    document.getElementById('evalBlock').scrollIntoView({ behavior:'smooth', block:'start' });
+
+    // Si aprobó, mostrar formulario de datos automáticamente
+    if (paso) {
+      document.getElementById('regForm').classList.add('visible');
+      setTimeout(function() {
+        document.getElementById('regForm').scrollIntoView({ behavior:'smooth', block:'start' });
+      }, 1800);
+    }
+  }
+
+  function reiniciarQuiz() {
+    iniciarQuiz();
+  }
 
   /* ============================================
      FORMULARIO CONTACTO
