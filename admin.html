@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrativo — Centro de Capacitación Mercedes Pinilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --navy:    #1A3863;
+      --blue:    #2B4D86;
+      --orange:  #FF6F00;
+      --gold:    #FFC107;
+      --red:     #C62828;
+      --green:   #2E7D32;
+      --sidebar: 240px;
+      --topbar:  60px;
+      --bg:      #f0f4f8;
+      --card:    #ffffff;
+      --text:    #1a1a2e;
+      --muted:   #6b7280;
+      --border:  #e5e7eb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    button { font-family: inherit; }
+
+    /* ===================== LOGIN ===================== */
+    #loginScreen {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1565C0 100%);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+    }
+    .login-wrap { text-align: center; }
+    .login-logo { height: 80px; object-fit: contain; margin-bottom: 24px; filter: brightness(0) invert(1); }
+    .login-logo-err { color: rgba(255,255,255,.7); font-size: 1.8rem; margin-bottom: 24px; }
+    .login-card {
+      background: #fff; border-radius: 18px;
+      padding: 40px 36px; width: 360px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.4);
+    }
+    .login-card h2 { font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .login-card p  { font-size: .82rem; color: var(--muted); margin-bottom: 26px; }
+    .lf-group { margin-bottom: 16px; text-align: left; }
+    .lf-group label { display: block; font-size: .76rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .4px; }
+    .lf-group input {
+      width: 100%; padding: 11px 14px; border: 1.5px solid var(--border);
+      border-radius: 9px; font-size: .95rem; font-family: inherit; outline: none; transition: border .2s;
+    }
+    .lf-group input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(43,77,134,.1); }
+    .btn-login {
+      width: 100%; padding: 13px; border: none; border-radius: 9px;
+      background: var(--navy); color: #fff;
+      font-size: .95rem; font-weight: 700; cursor: pointer; transition: background .2s; margin-top: 4px;
+    }
+    .btn-login:hover { background: var(--blue); }
+    #loginErr { color: var(--red); font-size: .8rem; margin-top: 12px; min-height: 18px; }
+
+    /* ===================== LAYOUT ===================== */
+    #adminPanel { display: none; }
+    .layout { display: flex; min-height: 100vh; }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: var(--sidebar); background: var(--navy);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; bottom: 0; z-index: 200;
+      transition: transform .28s ease;
+    }
+    .sb-brand {
+      display: flex; align-items: center; gap: 10px;
+      padding: 18px 16px; border-bottom: 1px solid rgba(255,255,255,.1);
+      min-height: var(--topbar);
+    }
+    .sb-brand img { height: 38px; object-fit: contain; filter: brightness(0) invert(1); }
+    .sb-brand span { color: #fff; font-weight: 700; font-size: .88rem; line-height: 1.2; }
+    .sb-brand .sb-sub { color: rgba(255,255,255,.5); font-size: .7rem; font-weight: 400; }
+    .sb-nav { flex: 1; padding: 10px 0; list-style: none; overflow-y: auto; }
+    .nav-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 18px; cursor: pointer; transition: all .18s;
+      color: rgba(255,255,255,.68); font-size: .88rem; font-weight: 500;
+      border-left: 3px solid transparent; user-select: none;
+    }
+    .nav-item:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .nav-item.active { background: rgba(255,255,255,.13); color: #fff; border-left-color: var(--gold); }
+    .nav-item i { width: 17px; text-align: center; font-size: .9rem; }
+    .nav-badge {
+      margin-left: auto; background: var(--orange); color: #fff;
+      font-size: .68rem; font-weight: 700; padding: 2px 7px; border-radius: 10px; min-width: 20px; text-align: center;
+    }
+    .nav-badge.hidden { display: none; }
+    .sb-footer {
+      padding: 14px 16px; border-top: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sb-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.15); display: flex; align-items: center;
+      justify-content: center; color: #fff; font-size: .85rem; flex-shrink: 0;
+    }
+    .sb-user-info { flex: 1; overflow: hidden; }
+    .sb-user-info strong { display: block; color: #fff; font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sb-user-info span   { color: rgba(255,255,255,.5); font-size: .72rem; }
+    .btn-logout { background: none; border: none; color: rgba(255,255,255,.5); cursor: pointer; padding: 5px; transition: color .2s; font-size: 1rem; }
+    .btn-logout:hover { color: #fff; }
+
+    /* MAIN */
+    .main-wrap { margin-left: var(--sidebar); flex: 1; display: flex; flex-direction: column; min-width: 0; }
+    .topbar {
+      height: var(--topbar); background: #fff;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 24px; gap: 14px;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    }
+    .hamburger { display: none; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text); padding: 4px; }
+    .topbar h2 { font-size: 1rem; font-weight: 600; flex: 1; }
+    .topbar-actions { display: flex; gap: 10px; align-items: center; }
+    .page-body { padding: 24px; }
+
+    /* SECTIONS */
+    .sec { display: none; }
+    .sec.active { display: block; }
+
+    /* ===================== BUTTONS ===================== */
+    .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border: none; border-radius: 8px; font-family: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; transition: opacity .18s, box-shadow .18s; }
+    .btn:hover { opacity: .88; }
+    .btn-navy   { background: var(--navy);   color: #fff; }
+    .btn-orange { background: var(--orange); color: #fff; }
+    .btn-green  { background: var(--green);  color: #fff; }
+    .btn-red    { background: var(--red);    color: #fff; }
+    .btn-ghost  { background: #f1f5f9; color: var(--text); }
+    .btn-sm { padding: 5px 11px; font-size: .76rem; border-radius: 6px; }
+    .btn-icon { padding: 7px 9px; }
+    .btn-link { background: none; border: none; color: var(--blue); font-size: .82rem; font-weight: 600; cursor: pointer; padding: 0; text-decoration: underline; }
+
+    /* ===================== STAT CARDS ===================== */
+    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card {
+      background: var(--card); border-radius: 12px; padding: 20px 22px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06); border-top: 4px solid var(--navy);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .stat-card.c-blue   { border-top-color: var(--navy); }
+    .stat-card.c-orange { border-top-color: var(--orange); }
+    .stat-card.c-green  { border-top-color: var(--green); }
+    .stat-card.c-gold   { border-top-color: var(--gold); }
+    .stat-icon { font-size: 1.4rem; margin-bottom: 4px; }
+    .stat-icon.c-blue   { color: var(--navy); }
+    .stat-icon.c-orange { color: var(--orange); }
+    .stat-icon.c-green  { color: var(--green); }
+    .stat-icon.c-gold   { color: #d4a000; }
+    .stat-lbl { font-size: .74rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+    .stat-val { font-size: 2rem; font-weight: 700; color: var(--text); line-height: 1.1; }
+    .stat-sub { font-size: .78rem; color: var(--muted); }
+
+    /* ===================== CHARTS ===================== */
+    .charts-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .chart-card { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .chart-head h3 { font-size: .92rem; font-weight: 600; }
+    .period-tabs { display: flex; gap: 5px; }
+    .ptab {
+      padding: 5px 13px; border: 1.5px solid var(--border); border-radius: 20px;
+      font-size: .76rem; font-weight: 600; cursor: pointer; background: none;
+      color: var(--muted); transition: all .18s; font-family: inherit;
+    }
+    .ptab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    /* ===================== TABLE CARD ===================== */
+    .tcard { background: var(--card); border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 20px; }
+    .tcard-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .tcard-head h3 { font-size: .92rem; font-weight: 600; flex: 1; min-width: 120px; }
+    .search-box {
+      padding: 8px 13px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: .84rem; font-family: inherit; outline: none; width: 220px; transition: border .2s;
+    }
+    .search-box:focus { border-color: var(--blue); }
+    .filter-row { display: flex; gap: 7px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; }
+    .fbtn {
+      padding: 5px 14px; border: 1.5px solid var(--border); border-radius: 20px;
+      font-size: .78rem; font-weight: 600; cursor: pointer; background: none;
+      color: var(--muted); transition: all .18s; font-family: inherit;
+    }
+    .fbtn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .tbl-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .84rem; white-space: nowrap; }
+    th {
+      text-align: left; padding: 9px 12px;
+      background: #f8fafc; font-size: .72rem; font-weight: 700;
+      color: var(--muted); text-transform: uppercase; letter-spacing: .4px;
+      border-bottom: 1px solid var(--border);
+    }
+    td { padding: 10px 12px; border-bottom: 1px solid #f1f4f8; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fafbfd; }
+    .action-cell { display: flex; gap: 5px; flex-wrap: nowrap; }
+
+    /* BADGES */
+    .badge { display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    .b-pend { background: #fff3e0; color: #e65100; }
+    .b-val  { background: #e8f5e9; color: var(--green); }
+    .b-rech { background: #ffebee; color: var(--red); }
+    .b-cert { background: #e3f2fd; color: #1565C0; }
+    .b-gray { background: #f1f5f9; color: #64748b; }
+
+    /* EMPTY STATE */
+    .empty { text-align: center; padding: 48px 24px; color: var(--muted); }
+    .empty i { font-size: 2.5rem; margin-bottom: 12px; display: block; opacity: .25; }
+    .empty p { font-size: .9rem; }
+
+    /* ===================== MODAL ===================== */
+    .modal-bg {
+      position: fixed; inset: 0; background: rgba(0,0,0,.48); z-index: 500;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .22s;
+    }
+    .modal-bg.open { opacity: 1; pointer-events: auto; }
+    .modal-box {
+      background: #fff; border-radius: 16px; padding: 28px 30px;
+      width: 560px; max-width: 96vw; max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.28);
+      transform: translateY(18px); transition: transform .22s;
+    }
+    .modal-bg.open .modal-box { transform: translateY(0); }
+    .mh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .mh h3 { font-size: 1rem; font-weight: 700; }
+    .btn-mclose { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--muted); padding: 4px; }
+    .mform { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .mform .full { grid-column: 1 / -1; }
+    .fl { display: block; font-size: .76rem; font-weight: 700; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .3px; }
+    .fi {
+      width: 100%; padding: 9px 12px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: .9rem; font-family: inherit; outline: none; transition: border .2s;
+    }
+    .fi:focus { border-color: var(--blue); }
+    .mfoot { margin-top: 22px; display: flex; gap: 10px; justify-content: flex-end; }
+
+    /* ===================== CONFIG ===================== */
+    .cfg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cfg-card { background: var(--card); border-radius: 12px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .cfg-card h3 { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: 18px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+    .cfg-group { margin-bottom: 14px; }
+    .feedback { font-size: .8rem; margin-top: 10px; min-height: 18px; }
+
+    /* ===================== CERT TEMPLATE ===================== */
+    #adminCertTpl {
+      position: fixed; top: -9999px; left: 0;
+      width: 1122px; height: 794px;
+      background: #fff; overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box; z-index: -10;
+    }
+    #adminCertTpl .cd-left { position:absolute;left:-118px;top:-80px;width:295px;height:690px;background:#1A3863;border-radius:0 55% 50% 0/0 50% 46% 0; }
+    #adminCertTpl .cd-rt  { position:absolute;right:-105px;top:-115px;width:345px;height:370px;background:#e8bfb8;border-radius:44% 0 58% 55%;opacity:.72; }
+    #adminCertTpl .cd-rb  { position:absolute;right:-88px;bottom:36px;width:328px;height:308px;background:#c84d18;border-radius:62% 50% 0 68%;opacity:.88; }
+    #adminCertTpl .cd-bar { position:absolute;bottom:0;left:0;right:0;height:54px;background:#1A3863;z-index:5; }
+    #adminCertTpl .cd-nit { position:absolute;top:16px;left:16px;font-size:13px;font-weight:700;color:#111;z-index:10; }
+    #adminCertTpl .cd-logo{ position:absolute;top:14px;left:0;right:0;text-align:center;z-index:10; }
+    #adminCertTpl .cd-logo img { height:118px;object-fit:contain; }
+    #adminCertTpl .cd-res { position:absolute;top:166px;left:148px;right:128px;text-align:center;font-size:16px;line-height:1.55;color:#222;z-index:10; }
+    #adminCertTpl .cd-cq  { position:absolute;top:218px;left:148px;right:128px;text-align:center;font-size:30px;font-weight:900;font-style:italic;letter-spacing:5px;color:#1A3863;z-index:10; }
+    #adminCertTpl .cd-nw  { position:absolute;top:284px;left:148px;right:128px;text-align:center;z-index:10; }
+    #adminCertTpl .cd-nm  { font-size:23px;font-weight:700;color:#111;padding-bottom:7px; }
+    #adminCertTpl .cd-nl  { height:2px;background:#888;width:76%;margin:0 auto; }
+    #adminCertTpl .cd-cc  { position:absolute;top:340px;left:148px;right:128px;text-align:center;font-size:14.5px;line-height:1.95;color:#333;z-index:10; }
+    #adminCertTpl .cd-hr  { position:absolute;top:450px;left:148px;right:128px;font-size:14.5px;color:#333;z-index:10; }
+    #adminCertTpl .cd-fs  { font-weight:700;border-bottom:2px solid #333;padding-bottom:2px; }
+    #adminCertTpl .cd-gy  { position:absolute;top:494px;left:148px;right:128px;text-align:center;font-size:14.5px;color:#333;z-index:10; }
+    #adminCertTpl .cd-fw  { position:absolute;top:508px;left:0;right:0;text-align:center;z-index:10; }
+    #adminCertTpl .cd-fi  { height:82px;object-fit:contain;display:block;margin:0 auto 4px; }
+    #adminCertTpl .cd-fl  { width:304px;height:2px;background:#333;margin:0 auto 6px; }
+    #adminCertTpl .cd-fn  { font-weight:700;font-size:14px;letter-spacing:.8px;color:#111; }
+    #adminCertTpl .cd-fc  { font-style:italic;font-size:12px;color:#555;margin-top:3px; }
+    #adminCertTpl .cd-ft  { position:absolute;bottom:14px;left:18px;right:18px;display:flex;justify-content:space-between;color:#fff;font-size:13px;z-index:20; }
+    #adminCertTpl .cd-cn  { font-size:20px;font-weight:700;font-family:'Roboto Mono',monospace; }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 960px) {
+      .stats-row  { grid-template-columns: repeat(2, 1fr); }
+      .charts-row { grid-template-columns: 1fr; }
+      .cfg-grid   { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.sb-open { transform: translateX(0); box-shadow: 8px 0 32px rgba(0,0,0,.3); }
+      .main-wrap { margin-left: 0; }
+      .hamburger { display: flex !important; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .page-body { padding: 16px; }
+      .logout-label { display: none; }
+    }
+    .sb-overlay {
+      display: none; position: fixed; inset: 0; z-index: 190; background: rgba(0,0,0,.3);
+    }
+    .sb-overlay.visible { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+<div id="loginScreen">
+  <div class="login-wrap">
+    <img src="img/logo.png" class="login-logo" alt=""
+         onerror="this.style.display='none';document.querySelector('.login-logo-err').style.display='block'">
+    <div class="login-logo-err" style="display:none"><i class="fas fa-shield-alt"></i></div>
+    <div class="login-card">
+      <h2>Panel de Administrador</h2>
+      <p>Centro de Capacitación Mercedes Pinilla</p>
+      <form onsubmit="doLogin(event)" autocomplete="on">
+        <div class="lf-group">
+          <label>Usuario</label>
+          <input id="loginUser" type="text" placeholder="admin" autocomplete="username" required>
+        </div>
+        <div class="lf-group">
+          <label>Contraseña</label>
+          <input id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn-login"><i class="fas fa-sign-in-alt"></i> Ingresar al Panel</button>
+        <p id="loginErr"></p>
+      </form>
+      <p style="margin-top:16px;font-size:.76rem;color:var(--muted)">
+        <a href="index.html" style="color:var(--muted);text-decoration:none;">← Volver al sitio</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     PANEL
+========================================================= -->
+<div id="adminPanel">
+  <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sb-brand">
+        <img src="img/logo.png" alt="" onerror="this.style.display='none'">
+        <div>
+          <span>Admin Panel</span><br>
+          <span class="sb-sub">Mercedes Pinilla</span>
+        </div>
+      </div>
+      <ul class="sb-nav">
+        <li class="nav-item active" onclick="showSec('dashboard',this)">
+          <i class="fas fa-chart-pie"></i> Dashboard
+        </li>
+        <li class="nav-item" onclick="showSec('pagos',this)">
+          <i class="fas fa-money-bill-wave"></i> Pagos
+          <span class="nav-badge hidden" id="badgePend">0</span>
+        </li>
+        <li class="nav-item" onclick="showSec('estudiantes',this)">
+          <i class="fas fa-users"></i> Estudiantes
+        </li>
+        <li class="nav-item" onclick="showSec('certificados',this)">
+          <i class="fas fa-certificate"></i> Certificados
+        </li>
+        <li class="nav-item" onclick="showSec('config',this)">
+          <i class="fas fa-cog"></i> Configuración
+        </li>
+      </ul>
+      <div class="sb-footer">
+        <div class="sb-avatar"><i class="fas fa-user-shield"></i></div>
+        <div class="sb-user-info">
+          <strong id="sbUserName">admin</strong>
+          <span>Super Administrador</span>
+        </div>
+        <button class="btn-logout" onclick="doLogout()" title="Cerrar sesión">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-wrap">
+      <div class="topbar">
+        <button class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <h2 id="topTitle">Dashboard</h2>
+        <div class="topbar-actions">
+          <button class="btn btn-navy" onclick="openModal()">
+            <i class="fas fa-user-plus"></i> Nuevo Registro
+          </button>
+          <button class="btn" onclick="confirmarLogout()" title="Cerrar sesión"
+            style="background:#fff;border:1.5px solid var(--border);color:var(--red);gap:7px;font-weight:600;">
+            <i class="fas fa-sign-out-alt"></i> <span class="logout-label">Cerrar Sesión</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="page-body">
+
+        <!-- ===== DASHBOARD ===== -->
+        <section id="sec-dashboard" class="sec active">
+          <div class="stats-row">
+            <div class="stat-card c-blue">
+              <div class="stat-icon c-blue"><i class="fas fa-users"></i></div>
+              <div class="stat-lbl">Total Estudiantes</div>
+              <div class="stat-val" id="sTotal">0</div>
+              <div class="stat-sub">registros en la base de datos</div>
+            </div>
+            <div class="stat-card c-orange">
+              <div class="stat-icon c-orange"><i class="fas fa-hourglass-half"></i></div>
+              <div class="stat-lbl">Pagos Pendientes</div>
+              <div class="stat-val" id="sPend">0</div>
+              <div class="stat-sub">por validar</div>
+            </div>
+            <div class="stat-card c-green">
+              <div class="stat-icon c-green"><i class="fas fa-check-circle"></i></div>
+              <div class="stat-lbl">Pagos Validados</div>
+              <div class="stat-val" id="sValid">0</div>
+              <div class="stat-sub">confirmados</div>
+            </div>
+            <div class="stat-card c-gold">
+              <div class="stat-icon c-gold"><i class="fas fa-dollar-sign"></i></div>
+              <div class="stat-lbl">Ingresos Totales</div>
+              <div class="stat-val" id="sIngresos">$0</div>
+              <div class="stat-sub">pagos validados × precio</div>
+            </div>
+          </div>
+
+          <div class="charts-row">
+            <div class="chart-card">
+              <div class="chart-head">
+                <h3>Registros por Período</h3>
+                <div class="period-tabs">
+                  <button class="ptab active" id="pt-semana" onclick="setPeriod('semana')">Semana</button>
+                  <button class="ptab" id="pt-mes"    onclick="setPeriod('mes')">Mes</button>
+                  <button class="ptab" id="pt-ano"    onclick="setPeriod('ano')">Año</button>
+                </div>
+              </div>
+              <canvas id="chartReg" height="150"></canvas>
+            </div>
+            <div class="chart-card">
+              <div class="chart-head"><h3>Estado de Pagos</h3></div>
+              <canvas id="chartPago" height="180"></canvas>
+            </div>
+          </div>
+
+          <div class="tcard">
+            <div class="tcard-head"><h3>Registros Recientes</h3></div>
+            <div class="tbl-wrap" id="recentWrap"></div>
+          </div>
+        </section>
+
+        <!-- ===== PAGOS ===== -->
+        <section id="sec-pagos" class="sec">
+          <div class="tcard">
+            <div class="tcard-head">
+              <h3>Gestión de Pagos</h3>
+              <input class="search-box" placeholder="🔍  Buscar nombre o cédula..." oninput="renderPagos(this.value)">
+            </div>
+            <div class="filter-row">
+              <button class="fbtn active" onclick="setFPago('todos',this)">Todos</button>
+              <button class="fbtn" onclick="setFPago('pendiente',this)">⏳ Pendiente</button>
+              <button class="fbtn" onclick="setFPago('validado',this)">✅ Validado</button>
+              <button class="fbtn" onclick="setFPago('rechazado',this)">❌ Rechazado</button>
+            </div>
+            <div class="tbl-wrap" id="pagosWrap"></div>
+          </div>
+        </section>
+
+        <!-- ===== ESTUDIANTES ===== -->
+        <section id="sec-estudiantes" class="sec">
+          <div class="tcard">
+            <div class="tcard-head">
+              <h3>Lista de Estudiantes</h3>
+              <input class="search-box" placeholder="🔍  Buscar..." oninput="renderEstudiantes(this.value)">
+            </div>
+            <div class="tbl-wrap" id="estudiantesWrap"></div>
+          </div>
+        </section>
+
+        <!-- ===== CERTIFICADOS ===== -->
+        <section id="sec-certificados" class="sec">
+          <div class="tcard">
+            <div class="tcard-head"><h3>Certificados Emitidos</h3></div>
+            <div class="tbl-wrap" id="certWrap"></div>
+          </div>
+        </section>
+
+        <!-- ===== CONFIGURACIÓN ===== -->
+        <section id="sec-config" class="sec">
+          <div class="cfg-grid">
+
+            <div class="cfg-card">
+              <h3><i class="fas fa-lock"></i> &nbsp;Cambiar Contraseña</h3>
+              <form onsubmit="cambiarPass(event)">
+                <div class="cfg-group">
+                  <label class="fl">Contraseña Actual</label>
+                  <input type="password" id="pActual" class="fi" placeholder="••••••••" required>
+                </div>
+                <div class="cfg-group">
+                  <label class="fl">Nueva Contraseña</label>
+                  <input type="password" id="pNueva" class="fi" placeholder="Mínimo 6 caracteres" required minlength="6">
+                </div>
+                <div class="cfg-group">
+                  <label class="fl">Confirmar Contraseña</label>
+                  <input type="password" id="pConfirm" class="fi" placeholder="Repetir nueva contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-navy" style="width:100%">
+                  <i class="fas fa-save"></i> Actualizar Contraseña
+                </button>
+                <p id="passMsg" class="feedback"></p>
+              </form>
+            </div>
+
+            <div class="cfg-card">
+              <h3><i class="fas fa-sliders-h"></i> &nbsp;Parámetros del Curso</h3>
+              <div class="cfg-group">
+                <label class="fl">Precio del Curso (COP $)</label>
+                <input type="number" id="cfgPrecio" class="fi" value="40000" min="0">
+              </div>
+              <div class="cfg-group">
+                <label class="fl">Nombre de Usuario Admin</label>
+                <input type="text" id="cfgUser" class="fi" placeholder="admin">
+              </div>
+              <div class="cfg-group">
+                <label class="fl">Teléfono WhatsApp (sin +57)</label>
+                <input type="text" id="cfgTel" class="fi" placeholder="3118851271">
+              </div>
+              <button onclick="guardarCfg()" class="btn btn-navy" style="width:100%;margin-top:4px">
+                <i class="fas fa-save"></i> Guardar Cambios
+              </button>
+              <p id="cfgMsg" class="feedback"></p>
+            </div>
+
+            <div class="cfg-card" style="grid-column:1/-1">
+              <h3><i class="fas fa-database"></i> &nbsp;Base de Datos</h3>
+              <p style="font-size:.84rem;color:var(--muted);margin-bottom:16px;">
+                Exporta una copia de seguridad o importa registros desde un archivo JSON.
+              </p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button onclick="exportDB()" class="btn btn-navy">
+                  <i class="fas fa-download"></i> Exportar JSON
+                </button>
+                <label class="btn btn-ghost" style="cursor:pointer;">
+                  <i class="fas fa-upload"></i> Importar JSON
+                  <input type="file" accept=".json" style="display:none" onchange="importDB(this)">
+                </label>
+                <button onclick="limpiarDB()" class="btn btn-red">
+                  <i class="fas fa-trash-alt"></i> Limpiar BD
+                </button>
+              </div>
+              <p id="dbMsg" class="feedback"></p>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /page-body -->
+    </div><!-- /main-wrap -->
+  </div><!-- /layout -->
+</div><!-- /adminPanel -->
+
+<!-- =========================================================
+     MODAL — AGREGAR / EDITAR REGISTRO
+========================================================= -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal-box">
+    <div class="mh">
+      <h3 id="modalTitle">Nuevo Registro</h3>
+      <button class="btn-mclose" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <form onsubmit="saveRegistro(event)">
+      <div class="mform">
+        <div>
+          <label class="fl">Nombre Completo *</label>
+          <input id="mNombre" class="fi" required placeholder="Juan Pérez García">
+        </div>
+        <div>
+          <label class="fl">Cédula / CC *</label>
+          <input id="mCedula" class="fi" required placeholder="12345678">
+        </div>
+        <div>
+          <label class="fl">Correo Electrónico</label>
+          <input id="mEmail" class="fi" type="email" placeholder="correo@email.com">
+        </div>
+        <div>
+          <label class="fl">Teléfono / Celular</label>
+          <input id="mTel" class="fi" placeholder="300 123 4567">
+        </div>
+        <div>
+          <label class="fl">Ciudad</label>
+          <input id="mCiudad" class="fi" placeholder="Yopal">
+        </div>
+        <div>
+          <label class="fl">Estado del Pago</label>
+          <select id="mPago" class="fi">
+            <option value="pendiente">Pendiente</option>
+            <option value="validado">Validado</option>
+            <option value="rechazado">Rechazado</option>
+          </select>
+        </div>
+        <div>
+          <label class="fl">Nota Evaluación (%)</label>
+          <input id="mNota" class="fi" type="number" min="0" max="100" placeholder="0 – 100">
+        </div>
+        <div>
+          <label class="fl">Fecha de Registro</label>
+          <input id="mFecha" class="fi" type="date">
+        </div>
+        <div class="full">
+          <label class="fl">Observaciones</label>
+          <input id="mObs" class="fi" placeholder="Comprobante recibido, número de transferencia, etc.">
+        </div>
+      </div>
+      <input type="hidden" id="mId">
+      <div class="mfoot">
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+        <button type="submit" class="btn btn-navy"><i class="fas fa-save"></i> Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- CERT TEMPLATE (hidden, for PDF) -->
+<div id="adminCertTpl">
+  <div class="cd-left"></div>
+  <div class="cd-rt"></div>
+  <div class="cd-rb"></div>
+  <div class="cd-bar"></div>
+  <div class="cd-nit">Nit: 51635895-6</div>
+  <div class="cd-logo"><img src="img/logo.png" onerror="this.style.display='none'"></div>
+  <div class="cd-res">Dando cumplimiento al <strong>Resolución 1279 de 2022 y Resolución 1378 de 2022</strong></div>
+  <div class="cd-cq">CERTIFICA QUE</div>
+  <div class="cd-nw">
+    <div id="ac-nombre" class="cd-nm">NOMBRE</div>
+    <div class="cd-nl"></div>
+  </div>
+  <div class="cd-cc">Con Cédula de Ciudadanía <strong id="ac-cedula">CC</strong> Participó en la capacitación virtual en materia de Educación Sanitaria en: <strong>Manipulación Higiénica de Alimentos</strong></div>
+  <div class="cd-hr">Con una intensidad horaria de <strong>8</strong> horas, de la fecha:&nbsp;<span id="ac-fecha" class="cd-fs">Fecha</span></div>
+  <div class="cd-gy">Dado en Yopal el</div>
+  <div class="cd-fw">
+    <img src="img/firma.png" class="cd-fi" onerror="this.style.visibility='hidden'">
+    <div class="cd-fl"></div>
+    <div class="cd-fn">MERCEDES PINILLA PINILLA</div>
+    <div class="cd-fc">Ing. de Alimentos, TP. 25254169566 CND</div>
+  </div>
+  <div class="cd-ft">
+    <span>Certificado No.&nbsp;<span id="ac-consec" class="cd-cn">0001</span></span>
+    <span>Código de verificación:&nbsp;<strong id="ac-codigo">MP-YYYYMMDD-XXXXXX</strong></span>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+'use strict';
+
+/* ====================================================
+   BASE DE DATOS (localStorage)
+==================================================== */
+var DB = {
+  KEY: 'adminDB',
+  all: function()         { return JSON.parse(localStorage.getItem(this.KEY) || '[]'); },
+  save: function(arr)     { localStorage.setItem(this.KEY, JSON.stringify(arr)); },
+  byId: function(id)      { return this.all().find(function(r){ return r.id === id; }) || null; },
+  add: function(data) {
+    var arr = this.all();
+    data.id = Date.now().toString(36) + Math.random().toString(36).slice(2,5);
+    data.fechaRegistro = data.fechaRegistro || isoHoy();
+    arr.push(data);
+    this.save(arr);
+    return data;
+  },
+  update: function(id, patch) {
+    var arr = this.all();
+    var i = arr.findIndex(function(r){ return r.id === id; });
+    if (i >= 0) { Object.assign(arr[i], patch); this.save(arr); return true; }
+    return false;
+  },
+  del: function(id) {
+    this.save(this.all().filter(function(r){ return r.id !== id; }));
+  }
+};
+
+/* ====================================================
+   AUTH
+==================================================== */
+var CRED_KEY = 'adminCredentials';
+var SESS_KEY = 'adminSession';
+var SESS_TTL = 8 * 3600 * 1000; // 8 horas
+
+function getCred() {
+  return JSON.parse(localStorage.getItem(CRED_KEY) || '{"user":"admin","password":"admin123"}');
+}
+
+function doLogin(e) {
+  e.preventDefault();
+  var u = g('loginUser').value.trim();
+  var p = g('loginPass').value;
+  var c = getCred();
+  if (u === c.user && p === c.password) {
+    localStorage.setItem(SESS_KEY, JSON.stringify({ user: u, ts: Date.now() }));
+    bootPanel(u);
+  } else {
+    g('loginErr').textContent = 'Usuario o contraseña incorrectos.';
+  }
+}
+
+function confirmarLogout() {
+  if (confirm('¿Cerrar sesión y volver al sitio principal?')) doLogout();
+}
+
+function doLogout() {
+  localStorage.removeItem(SESS_KEY);
+  window.location.href = 'index.html';
+}
+
+function checkSession() {
+  var raw = localStorage.getItem(SESS_KEY);
+  if (!raw) return;
+  var s = JSON.parse(raw);
+  if (Date.now() - s.ts < SESS_TTL) {
+    bootPanel(s.user);
+    // Renovar timestamp
+    localStorage.setItem(SESS_KEY, JSON.stringify({ user: s.user, ts: Date.now() }));
+  } else {
+    localStorage.removeItem(SESS_KEY);
+  }
+}
+
+function bootPanel(user) {
+  g('loginScreen').style.display = 'none';
+  g('adminPanel').style.display  = 'block';
+  g('sbUserName').textContent     = user;
+  loadCfgInputs();
+  renderDashboard();
+}
+
+function cambiarPass(e) {
+  e.preventDefault();
+  var msg = g('passMsg');
+  var c   = getCred();
+  var act = g('pActual').value;
+  var nv  = g('pNueva').value;
+  var cf  = g('pConfirm').value;
+  if (act !== c.password) { showMsg(msg, 'Contraseña actual incorrecta.', false); return; }
+  if (nv !== cf)          { showMsg(msg, 'Las contraseñas nuevas no coinciden.', false); return; }
+  if (nv.length < 6)      { showMsg(msg, 'Mínimo 6 caracteres.', false); return; }
+  c.password = nv;
+  localStorage.setItem(CRED_KEY, JSON.stringify(c));
+  showMsg(msg, '✅ Contraseña actualizada.', true);
+  e.target.reset();
+}
+
+/* ====================================================
+   NAVEGACIÓN
+==================================================== */
+var activeSec  = 'dashboard';
+var activeNavEl = null;
+
+var SEC_TITLES = {
+  dashboard: 'Dashboard', pagos: 'Gestión de Pagos',
+  estudiantes: 'Estudiantes', certificados: 'Certificados', config: 'Configuración'
+};
+
+function showSec(id, navEl) {
+  document.querySelectorAll('.sec').forEach(function(s){ s.classList.remove('active'); });
+  g('sec-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  if (navEl) navEl.classList.add('active');
+  g('topTitle').textContent = SEC_TITLES[id] || id;
+  activeSec = id;
+  closeSidebar();
+  if (id === 'dashboard')   renderDashboard();
+  if (id === 'pagos')       renderPagos();
+  if (id === 'estudiantes') renderEstudiantes();
+  if (id === 'certificados')renderCertificados();
+  if (id === 'config')      loadCfgInputs();
+}
+
+function toggleSidebar() {
+  g('sidebar').classList.toggle('sb-open');
+  g('sbOverlay').classList.toggle('visible');
+}
+function closeSidebar() {
+  g('sidebar').classList.remove('sb-open');
+  g('sbOverlay').classList.remove('visible');
+}
+
+/* ====================================================
+   DASHBOARD
+==================================================== */
+var chartRegInst  = null;
+var chartPagoInst = null;
+var period = 'semana';
+
+function renderDashboard() {
+  var arr    = DB.all();
+  var pend   = arr.filter(function(r){ return r.pagoEstado === 'pendiente'; }).length;
+  var valid  = arr.filter(function(r){ return r.pagoEstado === 'validado'; }).length;
+  var precio = parseInt((JSON.parse(localStorage.getItem('adminSettings') || '{"precio":40000}')).precio) || 40000;
+
+  g('sTotal').textContent    = arr.length;
+  g('sPend').textContent     = pend;
+  g('sValid').textContent    = valid;
+  g('sIngresos').textContent = '$' + (valid * precio).toLocaleString('es-CO');
+
+  // Badge sidebar
+  var b = g('badgePend');
+  b.textContent = pend;
+  b.classList.toggle('hidden', pend === 0);
+
+  buildChartReg(arr, period);
+  buildChartPago(arr);
+  buildRecentTable(arr.slice().reverse().slice(0, 8));
+}
+
+function setPeriod(p) {
+  period = p;
+  ['semana','mes','ano'].forEach(function(k){
+    g('pt-' + k).classList.toggle('active', k === p);
+  });
+  buildChartReg(DB.all(), p);
+}
+
+function buildChartReg(arr, p) {
+  var labels = [], data = [];
+  var now = new Date();
+  if (p === 'semana') {
+    for (var i = 6; i >= 0; i--) {
+      var d = new Date(now); d.setDate(d.getDate() - i);
+      var key = d.toISOString().slice(0,10);
+      labels.push(['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'][d.getDay()]);
+      data.push(arr.filter(function(r){ return r.fechaRegistro === key; }).length);
+    }
+  } else if (p === 'mes') {
+    for (var i = 11; i >= 0; i--) {
+      var d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      var ym = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+      labels.push(['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][d.getMonth()]);
+      data.push(arr.filter(function(r){ return r.fechaRegistro && r.fechaRegistro.startsWith(ym); }).length);
+    }
+  } else {
+    for (var i = 4; i >= 0; i--) {
+      var yr = String(now.getFullYear() - i);
+      labels.push(yr);
+      data.push(arr.filter(function(r){ return r.fechaRegistro && r.fechaRegistro.startsWith(yr); }).length);
+    }
+  }
+  if (chartRegInst) chartRegInst.destroy();
+  chartRegInst = new Chart(g('chartReg'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{ label: 'Registros', data: data, backgroundColor: '#2B4D86', borderRadius: 6, hoverBackgroundColor: '#1A3863' }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+    }
+  });
+}
+
+function buildChartPago(arr) {
+  var pend  = arr.filter(function(r){ return r.pagoEstado === 'pendiente'; }).length;
+  var valid = arr.filter(function(r){ return r.pagoEstado === 'validado'; }).length;
+  var rech  = arr.filter(function(r){ return r.pagoEstado === 'rechazado'; }).length;
+  var sin   = arr.length - pend - valid - rech;
+  if (chartPagoInst) chartPagoInst.destroy();
+  chartPagoInst = new Chart(g('chartPago'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Pendiente', 'Validado', 'Rechazado', 'Sin estado'],
+      datasets: [{ data: [pend, valid, rech, sin], backgroundColor: ['#FF6F00','#2E7D32','#C62828','#9E9E9E'], borderWidth: 2 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true, cutout: '65%',
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 14 } } }
+    }
+  });
+}
+
+function buildRecentTable(arr) {
+  var w = g('recentWrap');
+  if (!arr.length) { w.innerHTML = emptyHTML('No hay registros aún.'); return; }
+  w.innerHTML = '<table><thead><tr><th>Nombre</th><th>Cédula</th><th>Ciudad</th><th>Nota</th><th>Pago</th><th>Fecha</th></tr></thead><tbody>' +
+    arr.map(function(r){
+      return '<tr><td><strong>' + esc(r.nombre) + '</strong></td>' +
+        '<td style="font-family:monospace">' + esc(r.cedula) + '</td>' +
+        '<td>' + esc(r.ciudad || '—') + '</td>' +
+        '<td>' + (r.quizPct != null ? r.quizPct + '%' : '—') + '</td>' +
+        '<td>' + badgePago(r.pagoEstado) + '</td>' +
+        '<td style="color:var(--muted);font-size:.78rem">' + esc(r.fechaRegistro || '') + '</td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ====================================================
+   PAGOS
+==================================================== */
+var fPago = 'todos';
+
+function setFPago(val, el) {
+  fPago = val;
+  document.querySelectorAll('.fbtn').forEach(function(b){ b.classList.remove('active'); });
+  el.classList.add('active');
+  renderPagos();
+}
+
+function renderPagos(q) {
+  var arr = DB.all().slice().reverse();
+  if (fPago !== 'todos') arr = arr.filter(function(r){ return r.pagoEstado === fPago; });
+  if (q) {
+    var lq = q.toLowerCase();
+    arr = arr.filter(function(r){ return (r.nombre + r.cedula + (r.email||'')).toLowerCase().includes(lq); });
+  }
+  var w = g('pagosWrap');
+  if (!arr.length) { w.innerHTML = emptyHTML('No hay pagos con ese filtro.'); return; }
+  w.innerHTML = '<table><thead><tr><th>Nombre</th><th>Cédula</th><th>Tel.</th><th>Correo</th><th>Nota</th><th>Estado</th><th>Fecha</th><th>Acciones</th></tr></thead><tbody>' +
+    arr.map(function(r){
+      return '<tr>' +
+        '<td><strong>' + esc(r.nombre) + '</strong>' + (r.obs ? '<br><small style="color:var(--muted)">' + esc(r.obs) + '</small>' : '') + '</td>' +
+        '<td style="font-family:monospace">' + esc(r.cedula) + '</td>' +
+        '<td>' + esc(r.tel || '—') + '</td>' +
+        '<td style="font-size:.78rem">' + esc(r.email || '—') + '</td>' +
+        '<td>' + (r.quizPct != null ? r.quizPct + '%' : '—') + '</td>' +
+        '<td>' + badgePago(r.pagoEstado) + '</td>' +
+        '<td style="font-size:.78rem;color:var(--muted)">' + esc(r.fechaRegistro || '') + '</td>' +
+        '<td><div class="action-cell">' +
+          (r.pagoEstado !== 'validado'  ? '<button class="btn btn-green btn-sm" onclick="accionPago(\'' + r.id + '\',\'validado\')"><i class="fas fa-check"></i> Validar</button>' : '') +
+          (r.pagoEstado !== 'rechazado' ? '<button class="btn btn-red btn-sm"   onclick="accionPago(\'' + r.id + '\',\'rechazado\')"><i class="fas fa-times"></i></button>' : '') +
+          '<button class="btn btn-ghost btn-sm btn-icon" onclick="editReg(\'' + r.id + '\')"><i class="fas fa-edit"></i></button>' +
+          (r.pagoEstado === 'validado'  ? '<button class="btn btn-orange btn-sm" onclick="genCert(\'' + r.id + '\')"><i class="fas fa-file-pdf"></i> Cert.</button>' : '') +
+        '</div></td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+function accionPago(id, estado) {
+  DB.update(id, { pagoEstado: estado, pagoFecha: isoHoy() });
+  renderPagos();
+  if (activeSec === 'dashboard') renderDashboard();
+  else renderDashboard(); // Siempre actualizar el badge
+}
+
+/* ====================================================
+   ESTUDIANTES
+==================================================== */
+function renderEstudiantes(q) {
+  var arr = DB.all().slice().reverse();
+  if (q) {
+    var lq = q.toLowerCase();
+    arr = arr.filter(function(r){ return (r.nombre + r.cedula + (r.email||'') + (r.ciudad||'')).toLowerCase().includes(lq); });
+  }
+  var w = g('estudiantesWrap');
+  if (!arr.length) { w.innerHTML = emptyHTML('No hay estudiantes registrados.'); return; }
+  w.innerHTML = '<table><thead><tr><th>Nombre</th><th>CC</th><th>Correo</th><th>Tel</th><th>Ciudad</th><th>Nota</th><th>Pago</th><th>Cert.</th><th></th></tr></thead><tbody>' +
+    arr.map(function(r){
+      return '<tr>' +
+        '<td><strong>' + esc(r.nombre) + '</strong></td>' +
+        '<td style="font-family:monospace;font-size:.8rem">' + esc(r.cedula) + '</td>' +
+        '<td style="font-size:.78rem">' + esc(r.email || '—') + '</td>' +
+        '<td style="font-size:.78rem">' + esc(r.tel || '—') + '</td>' +
+        '<td>' + esc(r.ciudad || '—') + '</td>' +
+        '<td>' + (r.quizPct != null ? '<strong>' + r.quizPct + '%</strong>' : '—') + '</td>' +
+        '<td>' + badgePago(r.pagoEstado) + '</td>' +
+        '<td>' + (r.certCodigo ? '<span class="badge b-cert"><i class="fas fa-certificate"></i> Sí</span>' : '<span class="badge b-gray">—</span>') + '</td>' +
+        '<td><div class="action-cell">' +
+          '<button class="btn btn-ghost btn-sm btn-icon" onclick="editReg(\'' + r.id + '\')"><i class="fas fa-edit"></i></button>' +
+          (r.pagoEstado === 'validado' ? '<button class="btn btn-orange btn-sm" onclick="genCert(\'' + r.id + '\')"><i class="fas fa-file-pdf"></i></button>' : '') +
+          '<button class="btn btn-red btn-sm btn-icon" onclick="delReg(\'' + r.id + '\')"><i class="fas fa-trash"></i></button>' +
+        '</div></td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+function delReg(id) {
+  var r = DB.byId(id);
+  if (!r) return;
+  if (confirm('¿Eliminar el registro de "' + r.nombre + '"?\nEsta acción no se puede deshacer.')) {
+    DB.del(id);
+    renderEstudiantes();
+    renderDashboard();
+  }
+}
+
+/* ====================================================
+   CERTIFICADOS
+==================================================== */
+function renderCertificados() {
+  var arr = DB.all().filter(function(r){ return r.certCodigo; }).slice().reverse();
+  var w = g('certWrap');
+  if (!arr.length) { w.innerHTML = emptyHTML('No se han generado certificados aún.'); return; }
+  w.innerHTML = '<table><thead><tr><th>No.</th><th>Titular</th><th>Cédula</th><th>Código Verificación</th><th>Fecha Emisión</th><th></th></tr></thead><tbody>' +
+    arr.map(function(r){
+      return '<tr>' +
+        '<td style="font-family:monospace;font-weight:700">' + esc(r.certConsec || '—') + '</td>' +
+        '<td><strong>' + esc(r.nombre) + '</strong></td>' +
+        '<td style="font-family:monospace;font-size:.8rem">' + esc(r.cedula) + '</td>' +
+        '<td style="font-family:monospace;font-size:.76rem;color:var(--blue)">' + esc(r.certCodigo) + '</td>' +
+        '<td style="font-size:.78rem;color:var(--muted)">' + esc(r.certFecha || '') + '</td>' +
+        '<td><button class="btn btn-orange btn-sm" onclick="genCert(\'' + r.id + '\')"><i class="fas fa-redo"></i> Re-generar</button></td>' +
+      '</tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ====================================================
+   MODAL
+==================================================== */
+var editingId = null;
+
+function openModal() {
+  editingId = null;
+  g('modalTitle').textContent = 'Nuevo Registro';
+  ['mNombre','mCedula','mEmail','mTel','mCiudad','mNota','mObs'].forEach(function(id){ g(id).value = ''; });
+  g('mPago').value  = 'pendiente';
+  g('mFecha').value = isoHoy();
+  g('mId').value    = '';
+  g('modalBg').classList.add('open');
+}
+
+function editReg(id) {
+  var r = DB.byId(id);
+  if (!r) return;
+  editingId = id;
+  g('modalTitle').textContent = 'Editar Registro';
+  g('mNombre').value = r.nombre  || '';
+  g('mCedula').value = r.cedula  || '';
+  g('mEmail').value  = r.email   || '';
+  g('mTel').value    = r.tel     || '';
+  g('mCiudad').value = r.ciudad  || '';
+  g('mPago').value   = r.pagoEstado || 'pendiente';
+  g('mNota').value   = r.quizPct != null ? r.quizPct : '';
+  g('mFecha').value  = r.fechaRegistro || '';
+  g('mObs').value    = r.obs || '';
+  g('mId').value     = id;
+  g('modalBg').classList.add('open');
+}
+
+function closeModal() { g('modalBg').classList.remove('open'); }
+
+function saveRegistro(e) {
+  e.preventDefault();
+  var data = {
+    nombre:        g('mNombre').value.trim(),
+    cedula:        g('mCedula').value.trim(),
+    email:         g('mEmail').value.trim(),
+    tel:           g('mTel').value.trim(),
+    ciudad:        g('mCiudad').value.trim(),
+    pagoEstado:    g('mPago').value,
+    quizPct:       g('mNota').value !== '' ? Number(g('mNota').value) : null,
+    fechaRegistro: g('mFecha').value,
+    obs:           g('mObs').value.trim()
+  };
+  var id = g('mId').value;
+  if (id) { DB.update(id, data); } else { DB.add(data); }
+  closeModal();
+  renderDashboard();
+  if (activeSec === 'pagos')        renderPagos();
+  if (activeSec === 'estudiantes')  renderEstudiantes();
+}
+
+/* Close modal clicking outside */
+g('modalBg').addEventListener('click', function(e){ if (e.target === this) closeModal(); });
+
+/* ====================================================
+   GENERACIÓN DE CERTIFICADO PDF
+==================================================== */
+function _genCodigo() {
+  var d = new Date();
+  var f = d.getFullYear() + '' + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0');
+  var c = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', rnd = '';
+  for (var i = 0; i < 6; i++) rnd += c[Math.floor(Math.random()*c.length)];
+  return 'MP-' + f + '-' + rnd;
+}
+
+function _nextConsec() {
+  var n = parseInt(localStorage.getItem('certConsecutivo') || '52', 10) + 1;
+  localStorage.setItem('certConsecutivo', String(n));
+  return String(n).padStart(4, '0');
+}
+
+function genCert(id) {
+  var r = DB.byId(id);
+  if (!r) return;
+  if (r.pagoEstado !== 'validado') {
+    alert('El pago debe estar validado antes de generar el certificado.');
+    return;
+  }
+  var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var hoy   = new Date();
+  var fecha = hoy.getDate() + ' de ' + meses[hoy.getMonth()] + ' de ' + hoy.getFullYear();
+  var codigo = r.certCodigo || _genCodigo();
+  var consec  = r.certConsec || _nextConsec();
+
+  // Rellenar plantilla
+  g('ac-nombre').textContent = r.nombre.toUpperCase();
+  g('ac-cedula').textContent = r.cedula;
+  g('ac-fecha').textContent  = fecha;
+  g('ac-consec').textContent = consec;
+  g('ac-codigo').textContent = codigo;
+
+  // Guardar en registro
+  DB.update(id, { certCodigo: codigo, certConsec: consec, certFecha: isoHoy() });
+
+  // Guardar en certDB del sitio para que verificarCertificado() lo encuentre
+  var certDB = JSON.parse(localStorage.getItem('certDB') || '{}');
+  certDB[codigo] = { titular: r.nombre, cedula: r.cedula, emision: fecha, vence: 'No vence', estado: 'VÁLIDO', consec: consec };
+  localStorage.setItem('certDB', JSON.stringify(certDB));
+
+  var tpl = g('adminCertTpl');
+  tpl.style.top = '0px'; tpl.style.opacity = '0';
+  tpl.style.pointerEvents = 'none'; tpl.style.zIndex = '99999';
+
+  html2canvas(tpl, {
+    scale: 2, useCORS: true, logging: false,
+    backgroundColor: '#ffffff', windowWidth: 1122, windowHeight: 794
+  }).then(function(canvas){
+    tpl.style.top = '-9999px'; tpl.style.opacity = '1'; tpl.style.zIndex = '-10';
+    var jsPDF = window.jspdf.jsPDF;
+    var pdf   = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, 297, 210);
+    pdf.save('Certificado-' + r.nombre.replace(/\s+/g,'-') + '-' + consec + '.pdf');
+    if (activeSec === 'certificados') renderCertificados();
+    if (activeSec === 'pagos')        renderPagos();
+  }).catch(function(err){
+    tpl.style.top = '-9999px'; tpl.style.opacity = '1'; tpl.style.zIndex = '-10';
+    console.error('PDF error:', err);
+    alert('Error al generar el PDF: ' + err.message);
+  });
+}
+
+/* ====================================================
+   CONFIGURACIÓN
+==================================================== */
+function loadCfgInputs() {
+  var s = JSON.parse(localStorage.getItem('adminSettings') || '{"precio":40000,"tel":"3118851271"}');
+  g('cfgPrecio').value = s.precio || 40000;
+  g('cfgTel').value    = s.tel    || '3118851271';
+  g('cfgUser').value   = getCred().user;
+}
+
+function guardarCfg() {
+  var msg    = g('cfgMsg');
+  var precio = parseInt(g('cfgPrecio').value) || 40000;
+  var tel    = g('cfgTel').value.trim();
+  localStorage.setItem('adminSettings', JSON.stringify({ precio: precio, tel: tel }));
+  var newUser = g('cfgUser').value.trim();
+  if (newUser) {
+    var c = getCred(); c.user = newUser;
+    localStorage.setItem(CRED_KEY, JSON.stringify(c));
+    g('sbUserName').textContent = newUser;
+  }
+  showMsg(msg, '✅ Configuración guardada.', true);
+}
+
+/* ====================================================
+   EXPORT / IMPORT DB
+==================================================== */
+function exportDB() {
+  var payload = JSON.stringify({ version: '1.0', exportado: new Date().toISOString(), registros: DB.all() }, null, 2);
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([payload], { type: 'application/json' }));
+  a.download = 'adminDB-backup-' + isoHoy() + '.json';
+  a.click();
+}
+
+function importDB(input) {
+  var file = input.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var parsed = JSON.parse(e.target.result);
+      var recs   = parsed.registros || (Array.isArray(parsed) ? parsed : null);
+      if (!recs) { alert('Formato JSON no válido.'); return; }
+      DB.save(recs);
+      showMsg(g('dbMsg'), '✅ ' + recs.length + ' registros importados.', true);
+      renderDashboard();
+    } catch(err) { alert('Error al leer el archivo: ' + err.message); }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function limpiarDB() {
+  if (!confirm('¿Eliminar TODOS los registros de la base de datos?\n\nEsta acción NO se puede deshacer.')) return;
+  if (!confirm('Segunda confirmación requerida. ¿Continuar?')) return;
+  DB.save([]);
+  showMsg(g('dbMsg'), '✅ Base de datos limpiada.', true);
+  renderDashboard();
+}
+
+/* ====================================================
+   UTILIDADES
+==================================================== */
+function g(id) { return document.getElementById(id); }
+
+function isoHoy() { return new Date().toISOString().slice(0,10); }
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function badgePago(estado) {
+  var map = { pendiente: ['b-pend','⏳ Pendiente'], validado: ['b-val','✅ Validado'], rechazado: ['b-rech','❌ Rechazado'] };
+  var m = map[estado] || ['b-gray','Sin estado'];
+  return '<span class="badge ' + m[0] + '">' + m[1] + '</span>';
+}
+
+function emptyHTML(msg) {
+  return '<div class="empty"><i class="fas fa-inbox"></i><p>' + esc(msg) + '</p></div>';
+}
+
+function showMsg(el, txt, ok) {
+  el.style.color = ok ? 'var(--green)' : 'var(--red)';
+  el.textContent = txt;
+  setTimeout(function(){ el.textContent = ''; }, 3500);
+}
+
+/* ====================================================
+   ARRANQUE
+==================================================== */
+checkSession();
+</script>
+</body>
+</html>
